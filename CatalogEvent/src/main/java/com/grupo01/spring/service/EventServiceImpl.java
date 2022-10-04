@@ -25,5 +25,13 @@ public class EventServiceImpl implements EventService{
 		log.info("------Listado EventServiceImpl------");
 		return eventRepo.findAll();
 	}
+	
+	
+
+	@Override
+	public Evento addEvento(Evento evento) {
+		log.info("------Add Evento EventServiceImpl------");
+		return eventRepo.save(evento);
+	}
 
 }
