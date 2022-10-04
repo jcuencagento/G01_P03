@@ -10,7 +10,10 @@ import org.springframework.stereotype.Repository;
 import com.grupo01.spring.model.Evento;
 
 @Repository
-public interface EventRepo extends MongoRepository<Evento, Integer>{
+public interface EventRepo extends MongoRepository<Evento, Integer> {
+
+	@Query("{'event_id': ?0}")
+	public Optional<Evento> findByEvent_Id(int id);
 
 	@Query("{'event_id':?0}")
 	public Optional<Evento> findBy(int event_id);

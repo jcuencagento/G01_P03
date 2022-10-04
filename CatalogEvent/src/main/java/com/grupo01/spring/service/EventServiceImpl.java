@@ -8,16 +8,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
-
 import com.grupo01.spring.model.Evento;
 import com.grupo01.spring.repository.EventRepo;
 
 @Transactional
 @Service
-public class EventServiceImpl implements EventService{
-	
+public class EventServiceImpl implements EventService {
+
 	private static final Logger log = LoggerFactory.getLogger(EventServiceImpl.class);
-	
+
 	@Autowired
 	EventRepo eventRepo;
 
@@ -40,5 +39,10 @@ public class EventServiceImpl implements EventService{
 		return eventRepo.save(evento);
 	}
 
+
+	@Override
+	public Optional<Evento> eventoByEventId(int id) {
+		return eventRepo.findByEvent_Id(id);
+	}
 
 }
