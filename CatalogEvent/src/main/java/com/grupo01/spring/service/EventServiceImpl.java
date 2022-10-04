@@ -1,6 +1,7 @@
 package com.grupo01.spring.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,5 +26,19 @@ public class EventServiceImpl implements EventService{
 		log.info("------Listado EventServiceImpl------");
 		return eventRepo.findAll();
 	}
+	
+	
+	@Override
+	public Optional<Evento> eventoByEvent_id(int event_id) {
+		return eventRepo.findBy(event_id);
+	}
+
+	
+	@Override
+	public Evento addEvento(Evento evento) {
+		log.info("------Add Evento EventServiceImpl------");
+		return eventRepo.save(evento);
+	}
+
 
 }
