@@ -4,12 +4,15 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import lombok.Data;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+@Data
 @Entity
 @Table(name="usuarios")
 public class Usuario {
@@ -24,59 +27,21 @@ public class Usuario {
 	private String password;
 	private String fecha;
 	
-	public Usuario() {
+	
+
+	public Usuario(String nombre, String apellido, String mail, String password, String fecha) {
 		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public Long getUser_id() {
-		return user_id;
-	}
-
-	public void setUser_id(Long user_id) {
-		this.user_id = user_id;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	public String getApellido() {
-		return apellido;
-	}
-
-	public void setApellido(String apellido) {
 		this.apellido = apellido;
-	}
-
-	public String getMail() {
-		return mail;
-	}
-
-	public void setMail(String mail) {
 		this.mail = mail;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public String getFecha() {
-		return fecha;
+		this.setFecha(new Date());
 	}
 
 	//cambiamos el setter de fecha
 	//a lo mejor nos llega un Date o un string, hablar con el resto del grupo 
 	public void setFecha(Date fecha) {
-		this.fecha = this.changeTimeStamp(fecha);
+		this.fecha = changeTimeStamp(fecha);
 	}
 	
 	private String changeTimeStamp(Date d) {
