@@ -43,6 +43,7 @@ public class EventController {
 	@PostMapping("/add")
 	public EventoDTO addEvento(@RequestBody Evento evento) {
 		log.info("----Add Evento en EventController----");
+		
 		return EventoDTO.of(service.addEvento(evento));
 	}
 
