@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.grupo01.spring.controller.error.EventFoundException;
+import com.grupo01.spring.controller.error.EventNotFoundException;
 import com.grupo01.spring.model.Evento;
 import com.grupo01.spring.model.response.EventoDTO;
+import com.grupo01.spring.repository.EventRepo;
 import com.grupo01.spring.service.EventService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -30,6 +33,8 @@ public class EventController {
 	
 	@Autowired
 	EventService service;
+	@Autowired
+	EventRepo eventRepo;
 
 	
 	@GetMapping("")
@@ -39,6 +44,7 @@ public class EventController {
 		return EventoDTO.of(all);
 	}
 	
+
 	@Operation(summary = "Buscar evento por ID", description = "Dado un ID, devuelve un objeto Event", tags= {"evento"})
 	//No se por que no funciona esta parte:
 	/*
@@ -51,14 +57,18 @@ public class EventController {
 	@GetMapping("/{event_id}")
 	public EventoDTO eventoByEvent_id(@PathVariable int event_id) {
 		log.info("----Listado por id de evento en EventController----");
-		return EventoDTO.of(service.eventoByEvent_id(event_id).orElseThrow());
+		return EventoDTO.of(service.eventoByEvent_id(event_id).orElseThrow(EventNotFoundException::new)); //Crear excepcion evento NO encontrado
 	}
 	
 	
 	@PostMapping("/add")
-	public EventoDTO addEvento(@RequestBody Evento evento) {
+	public EventoDTO addEvento(@RequestBody Evento evento) throws Exception { //Crear excepcion evento encontrado
 		log.info("----Add Evento en EventController----");
-		
+		for(Evento e: eventRepo.findAll()) {
+			evento.setEvent_id(e.getEvent_id());
+			if(e.equals(evento)) throw new EventFoundException();
+		}
+		evento.setEvent_id(eventRepo.findAll().size());
 		return EventoDTO.of(service.addEvento(evento));
 	}
 

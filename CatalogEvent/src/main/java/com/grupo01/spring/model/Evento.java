@@ -2,8 +2,6 @@ package com.grupo01.spring.model;
 import lombok.Data;
 
 import javax.persistence.Id;
-//import javax.persistence.Column;
-
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import io.swagger.v3.oas.annotations.media.Schema;
