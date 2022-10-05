@@ -14,16 +14,16 @@ import io.swagger.v3.oas.models.info.License;
 public class OpenApiConfig {
 	
     @Bean
-    public OpenAPI UserOpenAPI() {
+    public OpenAPI StudentOpenAPI() {
         return new OpenAPI()
                 .info(new Info().title("User API")
                 .description("Documentación de la User API")
                 .version("v1.0")
-                .contact(new Contact().name("Grupo 01").
+                .contact(new Contact().name("Grupo01").
                         url("https://antoniosantos.es").email("antonio@santos.es"))
                 .license(new License().name("LICENSE").url("http://springdoc.org")))
                 .externalDocs(new ExternalDocumentation()
-                .description("Descripcion del proyecto")
+                .description("Proyecto 3")
                 .url("https://miproyecto.es"));
     }
 	
