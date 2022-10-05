@@ -14,7 +14,7 @@ import io.swagger.v3.oas.models.info.License;
 public class OpenApiConfig {
 	
     @Bean
-    public OpenAPI UserOpenAPI() {
+    public OpenAPI StudentOpenAPI() {
         return new OpenAPI()
                 .info(new Info().title("User API")
                 .description("Documentación de la User API")

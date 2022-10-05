@@ -12,7 +12,7 @@
 	<artifactId>DatabaseUsers</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>DatabaseUsers</name>
-	<description>Proyecto 03</description>
+	<description>Proyecto 3</description>
 	<properties>
 		<java.version>17</java.version>
 		<spring-cloud.version>2021.0.4</spring-cloud.version>
@@ -55,7 +55,9 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+
 		<!-- Documentacion API REST -->
+
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-ui</artifactId>

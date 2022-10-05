@@ -14,6 +14,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.grupo01.spring.controller.EventController;
 import com.grupo01.spring.model.Evento;
+import com.grupo01.spring.repository.EventRepo;
 import com.grupo01.spring.service.EventService;
 
 @WebMvcTest(EventController.class)
@@ -22,6 +23,8 @@ public class Test06_AltaIncorrecta {
 	private MockMvc mockMvc;
 	@MockBean
 	private EventService service;
+	@MockBean
+	private EventRepo repo;
 	@Test
 	void contextLoads() throws Exception {
 		Evento e=null;

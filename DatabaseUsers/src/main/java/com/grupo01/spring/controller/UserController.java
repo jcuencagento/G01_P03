@@ -50,7 +50,7 @@ public class UserController {
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@PostMapping(value = "/add", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public UsuarioDTO crearUsuario( @Parameter(name = "usuario", description = "usuario que llega por mmetodo post") 
+	public UsuarioDTO crearUsuario( @Parameter(name = "usuario", description = "usuario que llega por metodo post") 
 	@RequestBody Usuario usuario) throws Exception {
 		for(Usuario u: userRepo.findAll()) {
 			if(usuario.getMail().equals(u.getMail())) throw new UserFoundException();		
