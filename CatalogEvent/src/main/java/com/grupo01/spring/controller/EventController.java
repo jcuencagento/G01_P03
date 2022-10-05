@@ -38,7 +38,20 @@ public class EventController {
 		return EventoDTO.of(all);
 	}
 	
+<<<<<<< HEAD
 	
+=======
+
+	@Operation(summary = "Buscar evento por ID", description = "Dado un ID, devuelve un objeto Event", tags= {"evento"})
+	//No se por que no funciona esta parte:
+	/*
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Evento localizado", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Evento.class)) }),
+			@ApiResponse(responseCode = "400", description = "No válido", content = @Content),
+			@ApiResponse(responseCode = "404", description = "Evento no encontrado (NO implementado)", content = @Content) })
+	*/
+>>>>>>> 3b7fe126270718fdc9283f6d2fd69a6093757431
 	@GetMapping("/{event_id}")
 	public EventoDTO eventoByEvent_id(@PathVariable int event_id) {
 		log.info("----Listado por id de evento en EventController----");
