@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import lombok.Data;
+import lombok.AllArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,6 +17,7 @@ import javax.persistence.Table;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Data
+@AllArgsConstructor
 @Entity
 @Table(name="usuarios")
 @Schema(name="Usuario", description = "Clase Usuario")
@@ -37,17 +39,20 @@ public class Usuario {
 	String fecha;
 
 
+
+	public Usuario() {
+		super();
+	}
+
 	//cambiamos el setter de fecha
 	//a lo mejor nos llega un Date o un string, hablar con el resto del grupo 
 	public void setFechaActual(Date fecha) {
 		this.fecha = changeTimeStamp(fecha);
 	}
-	
+
 	private String changeTimeStamp(Date d) {
 		final DateFormat dateFormat= new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		return dateFormat.format(d);//el .format-> lo convierte en String
-
-
-	}
+	}	
 	
 }
