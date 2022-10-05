@@ -19,8 +19,8 @@ public class OpenApiConfig {
                 .info(new Info().title("User API")
                 .description("Documentación de la User API")
                 .version("v1.0")
-                .contact(new Contact().name("Grupo01").
-                        url("https://antoniosantos.es").email("antonio@santos.es"))
+                .contact(new Contact().name("Grupo 01")
+                .url("https://antoniosantos.es").email("antonio@santos.es"))
                 .license(new License().name("LICENSE").url("http://springdoc.org")))
                 .externalDocs(new ExternalDocumentation()
                 .description("Proyecto 3")
