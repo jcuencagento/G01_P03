@@ -12,11 +12,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 @Data
 @Entity
 @Table(name="usuarios")
+@Schema(name="Usuario", description = "Clase Usuario")
 public class Usuario {
 
+	 @Schema(name= "id", 
+	    		description = "Identificador único para el usuario", 
+	            example = "38", 
+	            required = true)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long user_id;

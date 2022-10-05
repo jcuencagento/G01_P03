@@ -6,10 +6,17 @@ import javax.persistence.Id;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 @Document(collection="events")
 @Data
+@Schema(name="Evento", description = "Clase Evento")
 public class Evento {
 	
+	@Schema(name= "id", 
+    		description = "Identificador único para el evento", 
+            example = "10", 
+            required = true)
 	@Id
 	//@Column(name="event_id")
 	private int event_id;
