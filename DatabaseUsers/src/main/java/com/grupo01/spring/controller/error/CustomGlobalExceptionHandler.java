@@ -1,4 +1,4 @@
-package com.grupo01.spring.error;
+package com.grupo01.spring.controller.error;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;

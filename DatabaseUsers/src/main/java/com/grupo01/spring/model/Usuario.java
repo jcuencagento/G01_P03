@@ -5,8 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,29 +27,19 @@ public class Usuario {
 	            required = true)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Getter@Setter Long user_id;
+	Long user_id;
 	
-	@Getter@Setter private String nombre;
-	@Getter@Setter private String apellido;
+	private String nombre;
+	private String apellido;
 	@Column(name = "mail", unique = true)
-	@Getter@Setter private String mail;
-	@Getter@Setter private String password;
-	@Getter String fecha;
-	
-	
+	private String mail;
+	private String password;
+	String fecha;
 
-	public Usuario(String nombre, String apellido, String mail, String password, String fecha) {
-		super();
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.mail = mail;
-		this.password = password;
-		this.setFecha(new Date());
-	}
 
 	//cambiamos el setter de fecha
 	//a lo mejor nos llega un Date o un string, hablar con el resto del grupo 
-	public void setFecha(Date fecha) {
+	public void setFechaActual(Date fecha) {
 		this.fecha = changeTimeStamp(fecha);
 	}
 	
