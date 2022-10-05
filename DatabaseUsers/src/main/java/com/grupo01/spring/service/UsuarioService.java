@@ -4,6 +4,6 @@ import com.grupo01.spring.model.Usuario;
 
 public interface UsuarioService {
 
-	public Usuario crearUsuario(Usuario usuario);
+	public Usuario crearUsuario(Usuario usuario) throws Exception;
 
 }

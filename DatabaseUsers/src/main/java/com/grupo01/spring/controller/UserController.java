@@ -22,7 +22,10 @@ public class UserController {
 	
 	@PostMapping(value = "/add", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public UsuarioDTO crearUsuario(@RequestBody Usuario usuario) {
+	public UsuarioDTO crearUsuario(@RequestBody Usuario usuario) throws Exception {
+		
+		
+		
 		return UsuarioDTO.of(usuarioService.crearUsuario(usuario));
 		
 	}

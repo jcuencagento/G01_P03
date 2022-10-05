@@ -5,7 +5,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,13 +22,14 @@ public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long user_id;
+	@Getter@Setter Long user_id;
 	
-	private String nombre;
-	private String apellido;
-	private String mail;
-	private String password;
-	private String fecha;
+	@Getter@Setter private String nombre;
+	@Getter@Setter private String apellido;
+	@Column(name = "mail", unique = true)
+	@Getter@Setter private String mail;
+	@Getter@Setter private String password;
+	@Getter String fecha;
 	
 	
 
