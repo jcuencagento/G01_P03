@@ -39,6 +39,7 @@ public class UserController {
 	@Schema(name = "usuarioRepo", description = "Instancia de la capa repositoio. Inyectada automaticamente mediante la anotacion @Autowired")
 	private UsuarioRepository userRepo;
 	
+
 	@Operation(summary = "Registrar nuevo usuario", description = "El usuario rellena el formulario de registro y crea el usuario. Si se crea correctamente devuelve 201", tags= {"Usuario"})
 	@ApiResponses(value = { 
 			  @ApiResponse(responseCode = "200", description = "Usuario creado.", 

@@ -27,9 +27,9 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
 
 
 	// @ResponseStatus(HttpStatus.NOT_FOUND)
-	@ExceptionHandler(UserFoundException.class)
+	@ExceptionHandler(UserNotFoundException.class)
 	public void springHandleNotFound(HttpServletResponse response) throws IOException {
-		logger.info("------ StudentNotFoundException() ");
+		logger.info("------ UsertNotFoundException() ");
 		// Saltará a la clase CustomErrorAttibuttes para crear un error personalizado
 		response.sendError(HttpStatus.NOT_FOUND.value());
 	}
