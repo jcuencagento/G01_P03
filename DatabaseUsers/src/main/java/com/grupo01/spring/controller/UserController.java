@@ -41,13 +41,11 @@ public class UserController {
 	
 	@Operation(summary = "Registrar nuevo usuario", description = "El usuario rellena el formulario de registro y crea el usuario. Si se crea correctamente devuelve 201", tags= {"Usuario"})
 	@ApiResponses(value = { 
-			  @ApiResponse(responseCode = "200", description = "Found the book", 
+			  @ApiResponse(responseCode = "200", description = "Usuario creado.", 
 			    content = { @Content(mediaType = "application/json", 
 			      schema = @Schema(implementation = Usuario.class)) }),
-			  @ApiResponse(responseCode = "400", description = "Invalid id supplied", 
-			    content = @Content), 
-			  @ApiResponse(responseCode = "404", description = "Book not found", 
-			    content = @Content) })
+			  @ApiResponse(responseCode = "400", description = "Invalid mail supplied", 
+			    content = @Content)})
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@PostMapping(value = "/add", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
