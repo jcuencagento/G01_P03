@@ -30,7 +30,6 @@ public class UserController {
 	private UsuarioRepository userRepo;
 	
 	@Operation(summary = "Registrar nuevo usuario", description = "El usuario rellena el formulario de registracion", tags= {"Usuario"})
-
 	@PostMapping(value = "/add", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public UsuarioDTO crearUsuario(@RequestBody Usuario usuario) throws Exception {

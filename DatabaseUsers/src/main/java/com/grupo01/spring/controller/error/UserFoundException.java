@@ -7,11 +7,6 @@ public class UserFoundException extends RuntimeException {
 	public UserFoundException() {
 		super("User found given its e-mail! Cannot create User.");
 	}
-	/*
-	public UserFoundException(Long id) {
-		super("Epic Fail: No existe el estudiante "+id);
-	}
-	*/	
 
 
 }
