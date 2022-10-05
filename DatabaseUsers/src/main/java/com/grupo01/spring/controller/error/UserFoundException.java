@@ -1,4 +1,4 @@
-package com.grupo01.spring.error;
+package com.grupo01.spring.controller.error;
 
 public class UserFoundException extends RuntimeException {
 

@@ -1,11 +1,11 @@
-package com.grupo01.spring.error;
+package com.grupo01.spring.controller.error;
 
 import org.springframework.boot.web.error.ErrorAttributeOptions;
 import org.springframework.boot.web.servlet.error.DefaultErrorAttributes;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.WebRequest;
 
-import com.grupo01.spring.service.UsuarioService;
+import com.grupo01.spring.controller.UserController;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +19,7 @@ import java.util.Map;
 
 @Component
 public class CustomErrorAttributes extends DefaultErrorAttributes {
-	private static final Logger logger = LoggerFactory.getLogger(UsuarioService.class);
+	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
 	private static final DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 

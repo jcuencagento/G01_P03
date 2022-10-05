@@ -19,14 +19,8 @@ import com.grupo01.spring.model.response.EventoDTO;
 import com.grupo01.spring.repository.EventRepo;
 import com.grupo01.spring.service.EventService;
 
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.tags.Tag;
-
 @RestController
 @RequestMapping("/evento")
-@Tag(name = "evento", description = "el evento API")
 public class EventController {
 	
 	private static final Logger log = LoggerFactory.getLogger(EventController.class);
@@ -44,6 +38,9 @@ public class EventController {
 		return EventoDTO.of(all);
 	}
 	
+<<<<<<< HEAD
+	
+=======
 
 	@Operation(summary = "Buscar evento por ID", description = "Dado un ID, devuelve un objeto Event", tags= {"evento"})
 	//No se por que no funciona esta parte:
@@ -54,6 +51,7 @@ public class EventController {
 			@ApiResponse(responseCode = "400", description = "No válido", content = @Content),
 			@ApiResponse(responseCode = "404", description = "Evento no encontrado (NO implementado)", content = @Content) })
 	*/
+>>>>>>> 3b7fe126270718fdc9283f6d2fd69a6093757431
 	@GetMapping("/{event_id}")
 	public EventoDTO eventoByEvent_id(@PathVariable int event_id) {
 		log.info("----Listado por id de evento en EventController----");
