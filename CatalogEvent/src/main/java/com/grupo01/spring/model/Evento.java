@@ -2,8 +2,6 @@ package com.grupo01.spring.model;
 import lombok.Data;
 
 import javax.persistence.Id;
-//import javax.persistence.Column;
-
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection="events")
