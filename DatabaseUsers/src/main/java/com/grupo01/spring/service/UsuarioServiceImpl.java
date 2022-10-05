@@ -1,13 +1,10 @@
 package com.grupo01.spring.service;
 
-import java.util.Optional;
-
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.grupo01.spring.controller.error.UserFoundException;
 import com.grupo01.spring.model.Usuario;
 import com.grupo01.spring.repository.UsuarioRepository;
 
