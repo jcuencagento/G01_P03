@@ -1,14 +1,17 @@
 package com.grupo01.spring.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -60,12 +63,12 @@ public class EventController {
 	@GetMapping("/{event_id}")
 	public EventoDTO eventoByEvent_id(@PathVariable int event_id) {
 		log.info("----Listado por id de evento en EventController----");
-		return EventoDTO.of(service.eventoByEvent_id(event_id).orElseThrow(EventNotFoundException::new)); //Crear excepcion evento NO encontrado
+		return EventoDTO.of(service.eventoByEvent_id(event_id).orElseThrow(EventNotFoundException::new)); 
 	}
 	
 	
 	@PostMapping("/add")
-	public EventoDTO addEvento(@RequestBody Evento evento) throws Exception { //Crear excepcion evento encontrado
+	public EventoDTO addEvento(@RequestBody Evento evento) throws Exception {
 		log.info("----Add Evento en EventController----");
 		if(evento.getNombre()==null) throw new EventNullException();
 		int last_id = 0;
@@ -77,6 +80,36 @@ public class EventController {
 		last_id = last_id+1;
 		evento.setEvent_id(last_id);
 		return EventoDTO.of(service.addEvento(evento));
+	}
+	
+	@DeleteMapping("/delete/{event_id}")
+	public void deleteEvento(@PathVariable int event_id) {
+		log.info("----Delete Evento en EventController----");
+		Evento e = service.eventoByEvent_id(event_id).orElseThrow(EventNotFoundException::new);
+		service.deleteEvento(e.getEvent_id());
+	}
+	
+	@GetMapping("/nombre/{nombre}")
+	public List<EventoDTO> eventoByNombre(@PathVariable String nombre) {
+		log.info("----Evento por nombre en EventController----");
+		List<Evento> events = service.eventoByNombre(nombre);
+		if (events == null) throw new ListaVaciaException();
+		return EventoDTO.of(events);
+	}
+	
+	@GetMapping("/genero/{genero}")
+	public List<EventoDTO> eventoByDescCorta(@PathVariable String genero) {
+		log.info("----Evento por genero en EventController----");
+		List<Evento> events = service.eventoByGenero(genero);
+		if (events == null) throw new ListaVaciaException();
+		return EventoDTO.of(events);
+	}
+	
+	@PutMapping("/{event_id}/edit") //Por hacer
+	public EventoDTO editEvento(@RequestBody Evento evento) {
+		log.info("----Add Evento en EventController----");
+		
+		return null;//EventoDTO.of(service.editEvento(evento));
 	}
 
 }

@@ -1,6 +1,7 @@
 package com.grupo01.spring;
 
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -45,7 +46,7 @@ public class Test05_AltaDeleteCorrecta {
 	@Test
 	void contextLoads() throws Exception {
 		Recinto r = new Recinto("casa", "madrid", "avenida america", "area", 155);
-		Evento e = new Evento(1, "electronica", "musica electronica", "musica electronica a tope de volumen",
+		Evento e = new Evento(1, "electronica", "musica electronica", "musica electronica a tope de volumen", "electronica",
 				"2007/10/06", "20:15", "15,60", "si", r);
 
 		//Comprobamos que se introduce correctamente
@@ -57,10 +58,10 @@ public class Test05_AltaDeleteCorrecta {
 				.andExpect(content().string(""));
 		
 		//Comprobamos que lo borramos correctamente
-		//mockMvc.perform(delete("/evento/")
-				//.content(asJson(e))
-				//.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
-				//.andExpect(status().isOk())
+		mockMvc.perform(delete("/evento/delete/")
+				.content(asJson(e))
+				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk());
 		
 	}
 	

@@ -20,7 +20,7 @@ import com.grupo01.spring.service.UsuarioService;
 //import io.swagger.v3.oas.annotations.tags.Tag;
 ///////////////// TEST OK ////////////////////
 @WebMvcTest(UserController.class)
-public class Tests02_TryToAddEmptyUser {
+public class Test03_AddEmptyUser {
 
 	@Autowired
     private MockMvc mock;

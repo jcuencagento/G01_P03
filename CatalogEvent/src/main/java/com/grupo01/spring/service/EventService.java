@@ -13,4 +13,10 @@ public interface EventService {
 
 	public Optional<Evento> eventoByEvent_id(int event_id);
 
+	public void deleteEvento(int event_id);
+
+	public List<Evento> eventoByNombre(String nombre);
+
+	public List<Evento> eventoByGenero(String genero);
+
 }

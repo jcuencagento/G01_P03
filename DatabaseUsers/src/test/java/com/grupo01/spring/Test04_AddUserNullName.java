@@ -21,7 +21,7 @@ import com.grupo01.spring.service.UsuarioService;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class Test03_AddUserNullName {
+public class Test04_AddUserNullName {
 
 	@Autowired
 	private MockMvc mockMvc;

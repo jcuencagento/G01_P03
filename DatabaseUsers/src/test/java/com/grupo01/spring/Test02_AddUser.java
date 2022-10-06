@@ -20,7 +20,7 @@ import com.grupo01.spring.model.Usuario;
 ///////////////// TEST OK ////////////////////
 @SpringBootTest
 @AutoConfigureMockMvc
-public class Tests01_TryToAddUser {
+public class Test02_AddUser {
 
     @Autowired
     private MockMvc mock;
