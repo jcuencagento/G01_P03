@@ -34,7 +34,7 @@ public class Test06_AltaIncorrecta {
 	
 	@Test
 	void contextLoads() throws Exception {
-		Evento e = new Evento(150, null, "Concierto sin nombre", null, null, null, null, null, null);
+		Evento e = new Evento(150, null, "Concierto sin nombre", null, null, null, null, null, null, null);
 		when(service.addEvento(e)).thenReturn(e);
 		mockMvc.perform(post("/evento/add/")
 				.content(asJson(e))

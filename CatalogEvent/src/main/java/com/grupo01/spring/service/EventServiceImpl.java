@@ -30,6 +30,7 @@ public class EventServiceImpl implements EventService{
 	
 	@Override
 	public Optional<Evento> eventoByEvent_id(int event_id) {
+		log.info("------Evento por id EventServiceImpl------");
 		return eventRepo.findBy(event_id);
 	}
 
@@ -38,6 +39,27 @@ public class EventServiceImpl implements EventService{
 	public Evento addEvento(Evento evento) {
 		log.info("------Add Evento EventServiceImpl------");
 		return eventRepo.save(evento);
+	}
+
+
+	@Override
+	public void deleteEvento(int event_id) {
+		log.info("------Delete Evento EventServiceImpl------");
+		eventRepo.deleteBy(event_id);
+	}
+
+
+	@Override
+	public List<Evento> eventoByNombre(String nombre) {
+		log.info("------Evento por nombre EventServiceImpl------");
+		return eventRepo.findByNombre(nombre);
+	}
+
+
+	@Override
+	public List<Evento> eventoByGenero(String genero) {
+		log.info("------Evento por genero EventServiceImpl------");
+		return eventRepo.findByGenero(genero);
 	}
 
 

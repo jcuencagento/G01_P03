@@ -22,6 +22,7 @@ public class Evento {
 	private String nombre;
 	private String descCorta;
 	private String descLarga;
+	private String genero;
 	private String fecha;
 	private String hora;
 	private String rangoPrecios;
