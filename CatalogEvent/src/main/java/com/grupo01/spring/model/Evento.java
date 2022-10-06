@@ -2,6 +2,7 @@ package com.grupo01.spring.model;
 
 import lombok.Data;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import javax.persistence.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -9,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Document(collection = "events")
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Schema(name = "Evento", description = "Clase Evento")
 public class Evento {
 
