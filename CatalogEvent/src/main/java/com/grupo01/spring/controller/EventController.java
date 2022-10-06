@@ -98,7 +98,7 @@ public class EventController {
 	}
 	
 	@GetMapping("/genero/{genero}")
-	public List<EventoDTO> eventoByDescCorta(@PathVariable String genero) {
+	public List<EventoDTO> eventoByGenero(@PathVariable String genero) {
 		log.info("----Evento por genero en EventController----");
 		List<Evento> events = service.eventoByGenero(genero);
 		if (events == null) throw new ListaVaciaException();
@@ -106,10 +106,14 @@ public class EventController {
 	}
 	
 	@PutMapping("/{event_id}/edit") //Por hacer
-	public EventoDTO editEvento(@RequestBody Evento evento) {
+	public EventoDTO editEvento(@RequestBody Evento editado) {
 		log.info("----Add Evento en EventController----");
-		
-		return null;//EventoDTO.of(service.editEvento(evento));
+		for(Evento actual: eventRepo.findAll()) {
+			if(actual.getEvent_id() == editado.getEvent_id()) {
+				return EventoDTO.of(service.editEvento(actual, editado));
+			}
+		}
+		throw new EventNotFoundException();
 	}
 
 }

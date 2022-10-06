@@ -63,4 +63,13 @@ public class EventServiceImpl implements EventService{
 	}
 
 
+	@Override
+	public Evento editEvento(Evento actual, Evento editado) {
+		log.info("------Evento editado EventServiceImpl------");
+		editado.setEvent_id(actual.getEvent_id());
+		eventRepo.deleteBy(actual.getEvent_id());
+		return eventRepo.save(editado);
+	}
+
+
 }

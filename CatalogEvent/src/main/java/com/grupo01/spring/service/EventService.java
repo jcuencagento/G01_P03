@@ -19,4 +19,6 @@ public interface EventService {
 
 	public List<Evento> eventoByGenero(String genero);
 
+	public Evento editEvento(Evento e, Evento evento);
+
 }
