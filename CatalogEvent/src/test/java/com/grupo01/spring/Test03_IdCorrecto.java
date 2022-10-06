@@ -11,7 +11,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -21,22 +23,24 @@ import com.grupo01.spring.controller.EventController;
 import com.grupo01.spring.repository.EventRepo;
 import com.grupo01.spring.service.EventService;
 
- 
-
-@WebMvcTest(EventController.class)
+///////////////// TEST OK ////////////////////
+@SuppressWarnings("unused")
+@SpringBootTest
+@AutoConfigureMockMvc
 public class Test03_IdCorrecto {
+	
     @Autowired
     private MockMvc mockMvc;
-     
-    @MockBean
+    
+	@Autowired
     private EventService service;
 
-    @MockBean
+    @Autowired
     private EventRepo repo;
 
     @Test
     void contextLoads() throws Exception {
-        int event_id=2;
+        int event_id=0;
         mockMvc.perform(get("/evento/" + event_id))
         	.andDo(print())
         	.andExpect(status().isOk())

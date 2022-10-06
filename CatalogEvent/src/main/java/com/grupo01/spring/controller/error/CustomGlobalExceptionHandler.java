@@ -48,11 +48,11 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
 	}
 
 	// @Validate For Validating Path Variables and Request Parameters
-	//@ExceptionHandler(ConstraintViolationException.class)
-	//public void constraintViolationException(HttpServletResponse response) throws IOException {
-		//logger.info("------ ConstraintViolationException() ");
-		//response.sendError(HttpStatus.BAD_REQUEST.value());
-	//}
+	@ExceptionHandler(EventNullException.class)
+	public void constraintViolationException(HttpServletResponse response) throws IOException {
+		logger.info("------ EventNullException() ");
+		response.sendError(HttpStatus.BAD_REQUEST.value());
+	}
 
 	// error handle for @Valid
 	@Override

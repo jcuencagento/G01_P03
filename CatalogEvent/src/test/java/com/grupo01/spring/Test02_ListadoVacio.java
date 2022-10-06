@@ -35,6 +35,7 @@ public class Test02_ListadoVacio {
 	@Test
 	void contextLoads() throws Exception {
 		List<Evento> listaVacia = null;
+		
 		when(service.eventoListado()).thenReturn(listaVacia);
 		
 		mockMvc.perform(get("/evento"))
