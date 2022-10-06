@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.grupo01.spring.controller.error.EventFoundException;
 import com.grupo01.spring.controller.error.EventNotFoundException;
+import com.grupo01.spring.controller.error.EventNullException;
 import com.grupo01.spring.controller.error.ListaVaciaException;
 import com.grupo01.spring.model.Evento;
 import com.grupo01.spring.model.response.EventoDTO;
@@ -66,11 +67,15 @@ public class EventController {
 	@PostMapping("/add")
 	public EventoDTO addEvento(@RequestBody Evento evento) throws Exception { //Crear excepcion evento encontrado
 		log.info("----Add Evento en EventController----");
+		if(evento.getNombre()==null) throw new EventNullException();
+		int last_id = 0;
 		for(Evento e: eventRepo.findAll()) {
-			evento.setEvent_id(e.getEvent_id());
+			last_id = e.getEvent_id();
+			evento.setEvent_id(last_id);
 			if(e.equals(evento)) throw new EventFoundException();
 		}
-		evento.setEvent_id(eventRepo.findAll().size());
+		last_id = last_id+1;
+		evento.setEvent_id(last_id);
 		return EventoDTO.of(service.addEvento(evento));
 	}
 

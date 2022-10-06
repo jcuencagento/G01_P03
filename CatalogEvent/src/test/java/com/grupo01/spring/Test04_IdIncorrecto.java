@@ -14,7 +14,7 @@ import com.grupo01.spring.repository.EventRepo;
 import com.grupo01.spring.service.EventService;
 
  
-
+///////////////// TEST OK ////////////////////
 @WebMvcTest(EventController.class)
 public class Test04_IdIncorrecto {
     @Autowired

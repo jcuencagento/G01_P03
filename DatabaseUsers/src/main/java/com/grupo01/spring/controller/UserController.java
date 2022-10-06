@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.grupo01.spring.controller.error.NullMailException;
+import com.grupo01.spring.controller.error.NullNameException;
+import com.grupo01.spring.controller.error.NullPassException;
 import com.grupo01.spring.controller.error.UserFoundException;
 import com.grupo01.spring.dto.UsuarioDTO;
 import com.grupo01.spring.model.Usuario;
@@ -50,10 +53,15 @@ public class UserController {
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@PostMapping(value = "/add", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public UsuarioDTO crearUsuario( @Parameter(name = "usuario", description = "usuario que llega por mmetodo post") 
+	public UsuarioDTO crearUsuario( @Parameter(name = "usuario", description = "usuario que llega por metodo post") 
 	@RequestBody Usuario usuario) throws Exception {
+		//if(usuario.getNombre().isEmpty() || usuario.getNombre().isBlank()|| usuario.getNombre()==null) throw new NullNameException();
+		if(usuario.getNombre()==null||usuario.getNombre().isEmpty() || usuario.getNombre().isBlank()) throw new NullNameException();
+		if(usuario.getPassword()==null|| usuario.getPassword().isEmpty() || usuario.getPassword().isBlank() ) throw new NullPassException();
+		if(usuario.getMail()==null|| usuario.getMail().isEmpty() || usuario.getMail().isBlank()) throw new NullMailException();
+		
 		for(Usuario u: userRepo.findAll()) {
-			if(usuario.getMail().equals(u.getMail())) throw new UserFoundException();		
+			if(usuario.getMail().equals(u.getMail())) throw new UserFoundException();	
 		}
 		usuario.setFechaActual(new Date());
 		return UsuarioDTO.of(usuarioService.crearUsuario(usuario));
