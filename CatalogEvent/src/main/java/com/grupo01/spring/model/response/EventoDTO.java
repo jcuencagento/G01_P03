@@ -22,6 +22,7 @@ public class EventoDTO implements Serializable{
 	private String rangoPrecios;
 	private String acceso;
 	private Recinto recinto;
+	private String genero;
 	
 	public static EventoDTO of(Evento evento) {
 		EventoDTO e = new EventoDTO();
@@ -34,6 +35,7 @@ public class EventoDTO implements Serializable{
 		e.setRangoPrecios(evento.getRangoPrecios());
 		e.setAcceso(evento.getAcceso());
 		e.setRecinto(evento.getRecinto());
+		e.setGenero(evento.getGenero());
 		
 		return e;
 	}
