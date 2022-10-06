@@ -6,6 +6,7 @@ import java.util.Date;
 
 import lombok.Data;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,6 +22,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name="usuarios")
 @Schema(name="Usuario", description = "Clase Usuario. Esta clase es de tipo @Entity")
@@ -49,11 +51,6 @@ public class Usuario {
 	private String password;
 	String fecha;
 
-
-
-	public Usuario() {
-		super();
-	}
 
 	//cambiamos el setter de fecha
 	//a lo mejor nos llega un Date o un string, hablar con el resto del grupo
