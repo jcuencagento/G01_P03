@@ -24,6 +24,7 @@ import com.grupo01.spring.repository.EventRepo;
 import com.grupo01.spring.service.EventService;
 
 ///////////////// TEST OK ////////////////////
+//FALTA DELETE//
 @SuppressWarnings("unused")
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -63,11 +64,11 @@ public class Test05_AltaDeleteCorrecta {
 		
 	}
 	
-	 public static String asJson(final Object obj) {
-	        try {
-	            return new ObjectMapper().writeValueAsString(obj);
-	        } catch (Exception e) {
-	            throw new RuntimeException(e);
-	        }
+	public static String asJson(final Object obj) {
+		try {
+			return new ObjectMapper().writeValueAsString(obj);
+	   	} catch (Exception e) {
+	   		throw new RuntimeException(e);
 	    }
+	 }
 }
