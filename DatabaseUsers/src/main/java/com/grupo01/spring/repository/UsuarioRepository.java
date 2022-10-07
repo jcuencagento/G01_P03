@@ -15,6 +15,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long>{
 
 	@Operation(summary = "Ya no se usa, pero por el momento lo mantenenemos por si la funcionalidad fuera útil en el futuro."
 			,deprecated = true)
+	
 	public Optional<Usuario> findByMail(@Parameter(description = "Cadena de correo a buscar en BBDD.")
 			String mail);
 

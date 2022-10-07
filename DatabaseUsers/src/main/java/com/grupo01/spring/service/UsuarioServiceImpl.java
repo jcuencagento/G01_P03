@@ -31,9 +31,15 @@ public class UsuarioServiceImpl implements UsuarioService {
 		//} 
 		return usuarioRepo.save(usuario);
 	}
-
+	
 	@Override
-	public Optional<Usuario> usuarioById(long user_id) {
-		return usuarioRepo.findById(user_id);
-	}
+    public Optional<Usuario> usuarioById(long user_id) {
+        return usuarioRepo.findById(user_id);
+    }
+	
+	@Override
+    public Optional<Usuario> usuarioByMail(String mail) {
+        return usuarioRepo.findByMail(mail);
+    }
+	
 }
