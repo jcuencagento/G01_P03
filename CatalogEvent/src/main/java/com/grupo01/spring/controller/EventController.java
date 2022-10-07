@@ -1,6 +1,5 @@
 package com.grupo01.spring.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -43,7 +42,14 @@ public class EventController {
 	EventService service;
 	@Autowired
 	EventRepo eventRepo;
-
+	
+	
+	@Operation(summary = "Buscar eventos", description = "Devuelve todos los objetos Event", tags= {"evento"})
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Eventos mostrados", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Evento.class)) }),
+			@ApiResponse(responseCode = "400", description = "No válido", content = @Content),
+			@ApiResponse(responseCode = "404", description = "Not Found", content = @Content) })
 	@ExceptionHandler(ListaVaciaException.class)
 	@GetMapping("")
 	public List<EventoDTO> eventoListado() {
@@ -53,13 +59,13 @@ public class EventController {
 		return EventoDTO.of(all);
 	}
 	
+	
 	@Operation(summary = "Buscar evento por ID", description = "Dado un ID, devuelve un objeto Event", tags= {"evento"})
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Evento localizado", content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = Evento.class)) }),
 			@ApiResponse(responseCode = "400", description = "No válido", content = @Content),
-			@ApiResponse(responseCode = "404", description = "Evento no encontrado (NO implementado)", content = @Content) })
-	
+			@ApiResponse(responseCode = "404", description = "Evento no encontrado", content = @Content) })
 	@GetMapping("/{event_id}")
 	public EventoDTO eventoByEvent_id(@PathVariable int event_id) {
 		log.info("----Listado por id de evento en EventController----");
@@ -67,6 +73,11 @@ public class EventController {
 	}
 	
 	
+	@Operation(summary = "Dar de alta un evento", description = "Agrega y devuelve un objeto Event", tags= {"evento"})
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "201", description = "Dado de alta", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Evento.class)) }),
+			@ApiResponse(responseCode = "400", description = "No válido", content = @Content) })
 	@PostMapping("/add")
 	public EventoDTO addEvento(@RequestBody Evento evento) throws Exception {
 		log.info("----Add Evento en EventController----");
@@ -82,6 +93,12 @@ public class EventController {
 		return EventoDTO.of(service.addEvento(evento));
 	}
 	
+	
+	@Operation(summary = "Eliminar un evento por id", description = "ELIMINA un objeto Event", tags= {"evento"})
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Eliminado correctamente"),
+			@ApiResponse(responseCode = "400", description = "No válido", content = @Content),
+			@ApiResponse(responseCode = "404", description = "Evento no encontrado", content = @Content) })
 	@DeleteMapping("/delete/{event_id}")
 	public void deleteEvento(@PathVariable int event_id) {
 		log.info("----Delete Evento en EventController----");
@@ -89,6 +106,13 @@ public class EventController {
 		service.deleteEvento(e.getEvent_id());
 	}
 	
+	
+	@Operation(summary = "Buscar evento por nombre", description = "Dado un nombre, devuelve un listado de objetos Event", tags= {"evento"})
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Evento/s localizado/s", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Evento.class)) }),
+			@ApiResponse(responseCode = "400", description = "No válido", content = @Content),
+			@ApiResponse(responseCode = "404", description = "Evento no encontrado", content = @Content) })
 	@GetMapping("/nombre/{nombre}")
 	public List<EventoDTO> eventoByNombre(@PathVariable String nombre) {
 		log.info("----Evento por nombre en EventController----");
@@ -97,6 +121,13 @@ public class EventController {
 		return EventoDTO.of(events);
 	}
 	
+	
+	@Operation(summary = "Buscar evento por genero", description = "Dado un genero, devuelve un listado de objetos Event", tags= {"evento"})
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Evento/s localizado/s", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Evento.class)) }),
+			@ApiResponse(responseCode = "400", description = "No válido", content = @Content),
+			@ApiResponse(responseCode = "404", description = "Evento no encontrado", content = @Content) })
 	@GetMapping("/genero/{genero}")
 	public List<EventoDTO> eventoByGenero(@PathVariable String genero) {
 		log.info("----Evento por genero en EventController----");
@@ -105,13 +136,18 @@ public class EventController {
 		return EventoDTO.of(events);
 	}
 	
-	@PutMapping("/{event_id}/edit") //Por hacer
+	
+	@Operation(summary = "Editar evento introduciendo id", description = "Dado un id y un Evento, actualiza y devuelve el objeto Event", tags= {"evento"})
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Evento editado", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Evento.class)) }),
+			@ApiResponse(responseCode = "400", description = "No válido", content = @Content),
+			@ApiResponse(responseCode = "404", description = "Evento no encontrado", content = @Content) })
+	@PutMapping("/{event_id}/edit")
 	public EventoDTO editEvento(@RequestBody Evento editado) {
 		log.info("----Add Evento en EventController----");
 		for(Evento actual: eventRepo.findAll()) {
-			if(actual.getEvent_id() == editado.getEvent_id()) {
-				return EventoDTO.of(service.editEvento(actual, editado));
-			}
+			if(actual.getEvent_id() == editado.getEvent_id()) return EventoDTO.of(service.editEvento(actual, editado));
 		}
 		throw new EventNotFoundException();
 	}

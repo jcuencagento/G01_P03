@@ -17,7 +17,10 @@
 		<java.version>17</java.version>
 		<spring-cloud.version>2021.0.4</spring-cloud.version>
 		<org.springdoc-version>1.6.4</org.springdoc-version>	
-		<spring-boot-admin.version>2.7.4</spring-boot-admin.version>	
+		<spring-boot-admin.version>2.7.4</spring-boot-admin.version>
+		<json.version>20220320</json.version>
+		<jaxb-api.version>2.3.1</jaxb-api.version>
+		<jjwt-api.version>0.11.5</jjwt-api.version>	
 	</properties>
 	<dependencies>
 		<dependency>
@@ -78,11 +81,44 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+        <!-- SEGURIDAD -->
+        <dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+		</dependency>
 		<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-test-autoconfigure</artifactId>
-            <scope>test</scope>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<!-- JSON WEB TOKEN -->
+		<!-- https://jwt.io/ -->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-api</artifactId>
+			<version>${jjwt-api.version}</version>
+		</dependency>
+		<dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>0.11.5</version>
+            <scope>runtime</scope>
         </dependency>
+        <dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-jackson</artifactId>
+			<version>0.11.5</version>
+			<scope>runtime</scope>
+		</dependency>
+		<!-- Thanks for using https://jar-download.com -->
+		
+		<!-- https://github.com/stleary/JSON-java -->
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>${json.version}</version>
+		</dependency>
+		
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
