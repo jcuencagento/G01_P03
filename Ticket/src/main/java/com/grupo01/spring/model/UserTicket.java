@@ -7,8 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Data;
+import lombok.ToString;
 
-
+@ToString(exclude="ticket")
 @Data
 @Entity
 @Table(name="userticket")
@@ -21,7 +22,7 @@ public class UserTicket {
 	private String mail;
 	//private String token;
 	
-	@OneToMany
+	@OneToMany(mappedBy="userticket")
 	private List<Ticket> ticket;
 	
 	

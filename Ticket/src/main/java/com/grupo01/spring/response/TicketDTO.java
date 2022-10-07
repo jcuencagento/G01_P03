@@ -22,18 +22,27 @@ public class TicketDTO implements Serializable {
 	private String user_mail;
 	private List<EventoDTO> events;
 	
+	@SuppressWarnings("unchecked")
 	public static TicketDTO of(Ticket ticket) {
 		log.info("------TICKET ADAPTER CON TICKET----");
 		log.info("------TICKET ADAPTER CON TICKET----"+ticket.getTicket_id());
-		log.info("------TICKET ADAPTER CON EVENTOS----"+ticket.getEvents().get(0).getNombre());
+		//log.info("------TICKET ADAPTER CON EVENTOS----"+ticket.getEvents().get(0).getNombre());
 		TicketDTO t = new TicketDTO();
 		
 		t.setTicket_id(ticket.getTicket_id());
 		t.setUser_mail(ticket.getUserticket().getMail());
+		
+		if(ticket.getEvents().size()==0) {
+			t.setEvents(null);
+			return t;
+		}
+		
 		List<TicketEvent> aux = ticket.getEvents();
-		log.info("------GET EVENTS----"+aux);
+		log.info("------GET EVENTS---HAY ESTE NUMERO DE EVENTOS EN EL TICKET->"+aux.size());
+		
 		List<EventoDTO> aux2 = EventoDTO.of(aux);
 		log.info("------EVENTO DTO OF----"+aux2);
+		
 		t.setEvents(aux2);        ///ERRROR
 		log.info("-------HE SALIDO DEL SET EVENTS-------");
         return t;

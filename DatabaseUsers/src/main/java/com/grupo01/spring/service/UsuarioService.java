@@ -12,6 +12,6 @@ public interface UsuarioService {
 	
     public Optional<Usuario> usuarioByMail(String mail);
 
-	public Optional<Usuario> usuarioById(long user_id);
+	//public Optional<Usuario> usuarioById(long user_id);
 
 }

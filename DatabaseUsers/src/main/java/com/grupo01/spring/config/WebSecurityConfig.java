@@ -26,7 +26,8 @@ public class WebSecurityConfig {
 		.csrf().disable() 
 		.addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class) //se verifica el usuario
 		.authorizeRequests() // da acceso al usuario segun: 
-		.antMatchers(HttpMethod.POST, "/user").permitAll() //.hasAuthority("USER")
+		.antMatchers(HttpMethod.POST, "/user/add").permitAll() //.hasAuthority("USER")
+		.antMatchers(HttpMethod.POST, "/user/login").permitAll() //.hasAuthority("USER")
 		.anyRequest().authenticated(); // el user autenticado puede hacer cualquier peticion
         return http.build();
   } 
