@@ -1,5 +1,7 @@
 package com.grupo01.spring.service;
 
+import java.util.Optional;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +30,10 @@ public class UsuarioServiceImpl implements UsuarioService {
 		//	throw new UserFoundException();
 		//} 
 		return usuarioRepo.save(usuario);
+	}
+
+	@Override
+	public Optional<Usuario> usuarioById(long user_id) {
+		return usuarioRepo.findById(user_id);
 	}
 }
