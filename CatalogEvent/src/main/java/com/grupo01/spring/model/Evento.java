@@ -16,9 +16,9 @@ public class Evento {
 
 	@Schema(name = "id", description = "Identificador único para el evento", example = "10", required = true)
 	@Id
-	// @Column(name="event_id")
 	private int event_id;
 
+	
 	private String nombre;
 	private String descCorta;
 	private String descLarga;
@@ -27,6 +27,16 @@ public class Evento {
 	private String hora;
 	private String rangoPrecios;
 	private String acceso;
+	
+	@Schema(name = "recinto", 
+			description = "Campo de recinto. Es un objeto con atributos nombre, ciudad, direccion, tipo y aforo",
+			example = "["
+					+ "nombre: \"sala x\""
+					+ "ciudad: \"Madrid\""
+					+ "direccion: \"C/Humanes\""
+					+ "tipo: \"sala\""
+					+ "aforo: 2000"
+					+ "]" )
 	private Recinto recinto;
 
 }
