@@ -22,6 +22,7 @@ import com.grupo01.spring.controller.error.NullNameException;
 import com.grupo01.spring.controller.error.NullPassException;
 import com.grupo01.spring.controller.error.UserFoundException;
 import com.grupo01.spring.controller.error.UserNotFoundException;
+
 import com.grupo01.spring.dto.UserTicketDTO;
 import com.grupo01.spring.dto.UsuarioDTO;
 import com.grupo01.spring.model.Usuario;
@@ -108,6 +109,7 @@ public class UserController {
         log.info("----Listado por id de usuario en UserController----");
         return UsuarioDTO.of(usuarioService.usuarioById(user_id).orElseThrow(UserNotFoundException::new)); 
     }
+
 
 }
 
