@@ -8,7 +8,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.ManyToOne;
 import lombok.Data;
+import lombok.ToString;
 
+@ToString(exclude="events")
 @Data
 @Entity
 //@Table(name="ticket")
@@ -21,7 +23,7 @@ public class Ticket {
 	@JoinColumn(name="userticket_id")
 	private UserTicket userticket;
 
-	@OneToMany(mappedBy="ticketevent")
+	@OneToMany(mappedBy="ticket")
 	private List<TicketEvent> events;
 
 }

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.grupo01.spring.controller.error.IncorrectPasswordException;
 import com.grupo01.spring.controller.error.NullMailException;
 import com.grupo01.spring.controller.error.NullNameException;
 import com.grupo01.spring.controller.error.NullPassException;
@@ -77,18 +78,18 @@ public class UserController {
 		return UsuarioDTO.of(usuarioService.crearUsuario(usuario));
 	}
 	
-	@PostMapping("/user") 
-	public UserTicketDTO login(@RequestParam("mail") String mail, @RequestParam("password") String pwd) {
+	@PostMapping("/login") 
+	public UserTicketDTO login(@RequestParam("mail") String mail, @RequestParam("pwd") String pwd) {
 		
         log.info("----Login de usuario en UserController----");
 		
 		Usuario user = usuarioService.usuarioByMail(mail).orElseThrow(UserNotFoundException::new);
-		if (pwd == user.getPassword()) {
+		if (pwd.equals(user.getPassword())) {
 			UserTicketDTO utDTO = UserTicketDTO.of(user);
 	        log.info("----Login de usuario correcto en UserController----");
 			return utDTO; //un dto ticket	
 		} else {
-		   throw new UserNotFoundException(); //Password incorrecto exception
+		   throw new IncorrectPasswordException();
 		}	
 		
 	}
