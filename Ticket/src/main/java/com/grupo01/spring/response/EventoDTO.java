@@ -20,15 +20,16 @@ public class EventoDTO implements Serializable {
 	private String nombre;
 	
 	public static EventoDTO of(TicketEvent evento) {
-		log.info("--------Adapter Event------");
+		log.info("--------ADAPTER EVENT CON EVENTO ------"+evento.getNombre());
 		EventoDTO e = new EventoDTO();
-		e.setEvent_id(evento.getTicketevent_id());
+		e.setEvent_id(evento.getEvent_id());
 		e.setNombre(evento.getNombre());
+		log.info("-------HE SALIDO DEL ADAPTER EVENTS-------");
 		return e;
 	}
 	
 	public static List<EventoDTO> of(List<TicketEvent> eventos) {
-		log.info("----- Eventos:" + eventos);
+		log.info("----- ADAPTER LIST EVENT CON :" + eventos);
 		return eventos.
 				stream()
 				.map(e -> of(e))

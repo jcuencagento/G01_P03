@@ -22,7 +22,7 @@ public class UserTicket {
 	//private String token;
 	
 	@OneToMany
-	private List<Ticket> tickets;
+	private List<Ticket> ticket;
 	
 	
 }

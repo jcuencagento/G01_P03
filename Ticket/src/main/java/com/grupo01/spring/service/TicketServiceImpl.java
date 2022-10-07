@@ -5,9 +5,12 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.grupo01.spring.controller.TicketController;
 import com.grupo01.spring.feignclients.CatalogFeignClientEvent;
 import com.grupo01.spring.feignclients.CatalogFeignClientUser;
 import com.grupo01.spring.model.Ticket;
@@ -20,6 +23,8 @@ import com.grupo01.spring.response.EventoDTO;
 @Transactional
 @Service
 public class TicketServiceImpl implements TicketService{
+	
+	private static Logger log = LoggerFactory.getLogger(TicketController.class);
 	
 	@Autowired
 	private TicketRepo ticketRepo;
@@ -39,6 +44,7 @@ public class TicketServiceImpl implements TicketService{
 
 	@Override
 	public List<Ticket> listTicket() {
+		log.info("------------ESTOY EN LIST TICKET SERVICE------");
 		return ticketRepo.findAll();
 	}
 
