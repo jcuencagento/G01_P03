@@ -2,12 +2,17 @@ package com.grupo01.spring.controller;
 
 import java.util.Date;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +21,8 @@ import com.grupo01.spring.controller.error.NullMailException;
 import com.grupo01.spring.controller.error.NullNameException;
 import com.grupo01.spring.controller.error.NullPassException;
 import com.grupo01.spring.controller.error.UserFoundException;
+import com.grupo01.spring.controller.error.UserNotFoundException;
+import com.grupo01.spring.dto.UserTicketDTO;
 import com.grupo01.spring.dto.UsuarioDTO;
 import com.grupo01.spring.model.Usuario;
 import com.grupo01.spring.repository.UsuarioRepository;
@@ -33,6 +40,8 @@ import io.swagger.v3.oas.annotations.media.Content;
 @RequestMapping("/user")
 @Tag(name = "usuario", description = "el usuario API")
 public class UserController {
+	
+	private static final Logger log = LoggerFactory.getLogger(UserController.class);
 	
 	@Autowired
 	@Schema(name = "usuarioService", description = "Instancia de la capa servicios. Inyectada automaticamente mediante la anotacion @Autowired")
@@ -67,4 +76,38 @@ public class UserController {
 		return UsuarioDTO.of(usuarioService.crearUsuario(usuario));
 	}
 	
+	@PostMapping("/user") 
+	public UserTicketDTO login(@RequestParam("mail") String mail, @RequestParam("password") String pwd) {
+		
+        log.info("----Login de usuario en UserController----");
+		
+		Usuario user = usuarioService.usuarioByMail(mail).orElseThrow(UserNotFoundException::new);
+		if (pwd == user.getPassword()) {
+			UserTicketDTO utDTO = UserTicketDTO.of(user);
+	        log.info("----Login de usuario correcto en UserController----");
+			return utDTO; //un dto ticket	
+		} else {
+		   throw new UserNotFoundException(); //Password incorrecto exception
+		}	
+		
+	}
+	
+	
+
+	/*
+	 * El método getJWTToken(...) se usa para construir el token, 
+	 * delegando en la clase de utilidad Jwts que incluye información sobre su expiración 
+	 * y un objeto de GrantedAuthority de Spring.
+	 * Este objeto lo usaremos para autorizar las peticiones a los recursos protegidos.
+	 *  
+	 */
+
+
+	@GetMapping("/{user_id}")
+    public UsuarioDTO usarioById(@PathVariable long user_id) {
+        log.info("----Listado por id de usuario en UserController----");
+        return UsuarioDTO.of(usuarioService.usuarioById(user_id).orElseThrow(UserNotFoundException::new)); 
+    }
+
 }
+
