@@ -32,7 +32,7 @@ public class UserTicketDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@NotBlank@NotEmpty
-	private int id;
+	private int user_id;
 	@NotBlank@NotEmpty
     private String mail;
 	@NotBlank@NotEmpty
@@ -40,10 +40,9 @@ public class UserTicketDTO implements Serializable{
 	
 	
 	@Operation(summary = "Convierte un usuario de tipo @Entity y devuelve uno tipo DTO")
-    public static UserTicketDTO of(@Parameter(description = "Recibe un usuario de tipo Entity.") 
-    Usuario usuario) {  // transforma entity en dto
+    public static UserTicketDTO of(@Parameter(description = "Recibe un usuario de tipo Entity.")  Usuario usuario) {  // transforma entity en dto
 		UserTicketDTO userTicketDTO = new UserTicketDTO();
-		userTicketDTO.setId((usuario.getUser_id().intValue()));
+		userTicketDTO.setUser_id(usuario.getUser_id());
 		userTicketDTO.setMail(usuario.getMail());	    
 		userTicketDTO.setToken(getJWTToken(usuario.getNombre()));
         return userTicketDTO;
@@ -57,6 +56,7 @@ public class UserTicketDTO implements Serializable{
 	                .collect(Collectors.toList());
     }	
 
+	@SuppressWarnings("deprecation")
 	public static String getJWTToken(String username) {
 
 		String secretKey = "LucaTicketGrupo01LucaTicketGrupo01LucaTicketGrupo01LucaTicketGrupo01LucaTicketGrupo01LucaTicketGrupo01";

@@ -26,7 +26,7 @@ public class UsuarioDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@NotBlank@NotEmpty
-	private Long id;
+	private int id;
 	@NotBlank@NotEmpty
     private String nombrecompleto;
 	@NotBlank@NotEmpty

@@ -19,14 +19,14 @@ public class UserDTO implements Serializable {
 
 	private int user_id;
 	private String mail;
-	//private String token;
+	private String token;
 	
 	public static UserDTO of(UserTicket user) {
 		log.info("--------Adapter User------");
 		UserDTO u = new UserDTO();
-		u.setUser_id(user.getUserticket_id());
+		u.setUser_id(user.getUser_id());
 		u.setMail(user.getMail());
-		//u.setToken(user.getToken());
+		u.setToken(user.getToken());
 		return u;
 	}
 	

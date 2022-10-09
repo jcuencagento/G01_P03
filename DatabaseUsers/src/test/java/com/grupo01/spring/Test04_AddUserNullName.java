@@ -35,7 +35,7 @@ public class Test04_AddUserNullName {
 	@Test
 	void contextLoads() throws Exception {
 		Usuario u = new Usuario();
-		u.setUser_id((long) 1);
+		u.setUser_id(1);
 		u.setNombre("");//funciona con null y "    "
 		u.setApellido("gomez");
 		u.setMail("g@g.com");

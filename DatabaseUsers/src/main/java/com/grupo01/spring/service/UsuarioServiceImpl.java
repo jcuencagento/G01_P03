@@ -33,7 +33,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 	}
 	
 	@Override
-    public Optional<Usuario> usuarioById(long user_id) {
+    public Optional<Usuario> usuarioById(int user_id) {
         return usuarioRepo.findById(user_id);
     }
 	

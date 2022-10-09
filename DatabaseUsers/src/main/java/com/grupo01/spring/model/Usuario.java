@@ -35,7 +35,7 @@ public class Usuario {
 	            required = true)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Long user_id;
+	int user_id;
 	@NotBlank@NotEmpty
 	private String nombre;
 	@NotBlank@NotEmpty

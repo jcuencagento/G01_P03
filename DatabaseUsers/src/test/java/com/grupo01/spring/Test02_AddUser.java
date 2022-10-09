@@ -38,7 +38,7 @@ public class Test02_AddUser {
 
     	// Given 
     	Usuario usu = new Usuario();
-    	usu.setUser_id((long) 17);
+    	usu.setUser_id(17);
     	usu.setNombre("Prueba");
     	usu.setApellido("01_c");
     	usu.setMail("jdjh@.com");

@@ -15,10 +15,12 @@ import com.grupo01.spring.feignclients.CatalogFeignClientEvent;
 import com.grupo01.spring.feignclients.CatalogFeignClientUser;
 import com.grupo01.spring.model.Ticket;
 import com.grupo01.spring.model.TicketEvent;
+import com.grupo01.spring.model.UserTicket;
 import com.grupo01.spring.repository.TicketEventRepo;
 import com.grupo01.spring.repository.UserTicketRepo;
 import com.grupo01.spring.repository.service.TicketRepo;
 import com.grupo01.spring.response.EventoDTO;
+import com.grupo01.spring.response.UserDTO;
 
 @Transactional
 @Service
@@ -70,7 +72,31 @@ public class TicketServiceImpl implements TicketService{
 			ticketeventRepo.save(te);
 		}
 	}
-	
+
+	@Override
+	public void addTicket(String mail, String pwd) throws Exception {
+		final UserDTO user = userFeign.login(mail,pwd);					//Si es login incorrecto se quedaria aqui con 403
+		
+		log.info("------------ADDTICKET SERVICE HE LOGEADO A="+user);
+		
+		UserTicket userticket = new UserTicket();
+		
+		userticket.setUser_id(user.getUser_id());
+		userticket.setMail(mail);
+		userticket.setToken(user.getToken());
+		userticketRepo.save(userticket);
+		
+		log.info("------------ADDTICKET SERVICE CON USERTICKET="+userticket.getUserticket_id());
+		
+		Ticket ticket = new Ticket();
+		ticket.setUserticket(userticket);
+		ticket.setEvents(null);
+
+		
+		ticketRepo.save(ticket);
+		
+		log.info("------------ADDTICKET SERVICE CON TICKET CON USERTICKET ID="+ticket.getTicket_id());
+	}
 	
 
 }
