@@ -22,7 +22,6 @@ public class TicketDTO implements Serializable {
 	private String user_mail;
 	private List<EventoDTO> events;
 	
-	@SuppressWarnings("unchecked")
 	public static TicketDTO of(Ticket ticket) {
 		log.info("------TICKET ADAPTER CON TICKET----");
 		log.info("------TICKET ADAPTER CON TICKET----"+ticket.getTicket_id());

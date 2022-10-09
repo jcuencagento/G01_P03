@@ -20,7 +20,7 @@ public class UserTicket {
 	
 	private int user_id;
 	private String mail;
-	//private String token;
+	private String token;
 	
 	@OneToMany(mappedBy="userticket")
 	private List<Ticket> ticket;

@@ -12,6 +12,8 @@ public interface TicketService {
 	
 	public void addEvent(int ticket_id, int event_id, int cant);
 
+	public void addTicket(String mail, String pwd) throws Exception;
+
 }
 
 

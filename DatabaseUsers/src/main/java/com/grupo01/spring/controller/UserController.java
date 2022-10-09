@@ -84,9 +84,10 @@ public class UserController {
         log.info("----Login de usuario en UserController----");
 		
 		Usuario user = usuarioService.usuarioByMail(mail).orElseThrow(UserNotFoundException::new);
+		log.info("----Login de usuario "+user+" en UserController----");
 		if (pwd.equals(user.getPassword())) {
 			UserTicketDTO utDTO = UserTicketDTO.of(user);
-	        log.info("----Login de usuario correcto en UserController----");
+	        log.info("----Login de usuario correcto en UserController----> "+utDTO);
 			return utDTO; //un dto ticket	
 		} else {
 		   throw new IncorrectPasswordException();
@@ -106,7 +107,7 @@ public class UserController {
 
 
 	@GetMapping("/{user_id}")
-    public UsuarioDTO usarioById(@PathVariable long user_id) {
+    public UsuarioDTO usarioById(@PathVariable int user_id) {
         log.info("----Listado por id de usuario en UserController----");
         return UsuarioDTO.of(usuarioService.usuarioById(user_id).orElseThrow(UserNotFoundException::new)); 
     }

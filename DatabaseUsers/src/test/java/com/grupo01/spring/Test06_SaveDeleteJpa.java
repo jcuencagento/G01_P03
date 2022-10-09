@@ -22,7 +22,7 @@ public class Test06_SaveDeleteJpa {
         Usuario u = new Usuario();
         assertThat(repo.save(u).getMail()).isNull();
 
-        Usuario uOK = new Usuario((long) 15, "javi", "hi", "javi@", "hola", null);
+        Usuario uOK = new Usuario(15, "javi", "hi", "javi@", "hola", null);
         uOK.setFechaActual(new Date());
         assertThat(repo.save(uOK).getMail()).isEqualTo(uOK.getMail());
     }

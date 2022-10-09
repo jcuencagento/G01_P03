@@ -12,7 +12,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 
 @Repository
-public interface UsuarioRepository extends JpaRepository<Usuario, Long>{
+public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
 
 	@Operation(summary = "Ya no se usa, pero por el momento lo mantenenemos por si la funcionalidad fuera útil en el futuro."
 			,deprecated = true)

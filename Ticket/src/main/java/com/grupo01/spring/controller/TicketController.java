@@ -1,7 +1,6 @@
 package com.grupo01.spring.controller;
 
 import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,10 +32,15 @@ public class TicketController {
 
 	@GetMapping("/{ticket_id}")
 	public TicketDTO findByTicketId(@PathVariable int id) {
+		log.info("------------ESTOY EN FIND TICKET CONTROLLER------");
 		return TicketDTO.of(ticketService.findByTicketId(id).orElseThrow());
 	}
 	
-	//@PostMapping("/add")
+	@PostMapping("/buy")
+	public void addTicket(@RequestParam String mail, @RequestParam String pwd) throws Exception {
+		log.info("------------ESTOY EN BUY (ADD A TICKET) CONTROLLER------");
+		ticketService.addTicket(mail, pwd);
+	}
 	
 
 	@PostMapping("{ticket_id}/add")
