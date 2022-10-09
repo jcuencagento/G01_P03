@@ -3,6 +3,8 @@ package com.grupo01.spring.model;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -16,6 +18,7 @@ import lombok.ToString;
 public class UserTicket {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int userticket_id;
 	
 	private int user_id;

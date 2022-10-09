@@ -84,7 +84,8 @@ public class TicketServiceImpl implements TicketService{
 		userticket.setUser_id(user.getUser_id());
 		userticket.setMail(mail);
 		userticket.setToken(user.getToken());
-		userticketRepo.save(userticket);
+		userticket = userticketRepo.save(userticket);
+		System.out.println(userticket);
 		
 		log.info("------------ADDTICKET SERVICE CON USERTICKET="+userticket.getUserticket_id());
 		
