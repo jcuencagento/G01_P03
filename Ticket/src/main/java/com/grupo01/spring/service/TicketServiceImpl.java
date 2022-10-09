@@ -79,7 +79,6 @@ public class TicketServiceImpl implements TicketService{
 		
 		log.info("------------ADDTICKET SERVICE HE LOGEADO A="+user);
 		
-		Ticket ticket = new Ticket();
 		UserTicket userticket = new UserTicket();
 		
 		userticket.setUser_id(user.getUser_id());
@@ -89,6 +88,7 @@ public class TicketServiceImpl implements TicketService{
 		
 		log.info("------------ADDTICKET SERVICE CON USERTICKET="+userticket.getUserticket_id());
 		
+		Ticket ticket = new Ticket();
 		ticket.setUserticket(userticket);
 		ticket.setEvents(null);
 
