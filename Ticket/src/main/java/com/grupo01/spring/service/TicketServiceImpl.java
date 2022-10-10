@@ -97,6 +97,9 @@ public class TicketServiceImpl implements TicketService{
 		ticketRepo.save(ticket);
 		
 		log.info("------------ADDTICKET SERVICE CON TICKET CON USERTICKET ID="+ticket.getTicket_id());
+		
+		//LLAMAR ABAJO CON LOS ID, MAIL Y TOKEN
+		//addTicket(userticket, ticket, user.getUser_id(), user.getMail(), user.getToken());
 	}
 	
 

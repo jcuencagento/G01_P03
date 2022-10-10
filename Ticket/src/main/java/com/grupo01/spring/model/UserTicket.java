@@ -17,8 +17,13 @@ import lombok.ToString;
 @Table(name="userticket")
 public class UserTicket {
 	
+<<<<<<< Updated upstream
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+=======
+	@Id 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)//valor generado en bd
+>>>>>>> Stashed changes
 	private int userticket_id;
 	
 	private int user_id;
