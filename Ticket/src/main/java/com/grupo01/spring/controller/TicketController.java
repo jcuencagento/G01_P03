@@ -29,12 +29,14 @@ public class TicketController {
 		log.info("------------ESTOY EN LIST TICKET CONTROLLER------");
 		return TicketDTO.of(ticketService.listTicket());
 	}
+	
 
 	@GetMapping("/{ticket_id}")
 	public TicketDTO findByTicketId(@PathVariable int id) {
 		log.info("------------ESTOY EN FIND TICKET CONTROLLER------");
 		return TicketDTO.of(ticketService.findByTicketId(id).orElseThrow());
 	}
+	
 	
 	@PostMapping("/buy")
 	public void addTicket(@RequestParam String mail, @RequestParam String pwd) throws Exception {
