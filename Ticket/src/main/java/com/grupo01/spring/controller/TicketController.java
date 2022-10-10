@@ -32,9 +32,9 @@ public class TicketController {
 	
 
 	@GetMapping("/{ticket_id}")
-	public TicketDTO findByTicketId(@PathVariable int id) {
-		log.info("------------ESTOY EN FIND TICKET CONTROLLER------");
-		return TicketDTO.of(ticketService.findByTicketId(id).orElseThrow());
+	public TicketDTO findByTicketId(@PathVariable int ticket_id) {
+		log.info("------------ESTOY EN FIND TICKET CONTROLLER------BUSCANDO EL: "+ticket_id);
+		return TicketDTO.of(ticketService.findByTicketId(ticket_id).orElseThrow());
 	}
 	
 	
@@ -50,6 +50,12 @@ public class TicketController {
 			@RequestParam(defaultValue = "1") int cant) {
 		log.info("------------ESTOY EN ADD EVENT A TICKET CONTROLLER------");
 		ticketService.addEvent(ticket_id, event_id, cant);
+	}
+	
+	@GetMapping("{ticket_id}/pay")
+	public String payTicket(@PathVariable int ticket_id) {
+		log.info("------------ESTOY EN PAY A TICKET CONTROLLER------");
+		return ticketService.pay(ticket_id);
 	}
 
 }

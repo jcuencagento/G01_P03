@@ -22,6 +22,11 @@ public class TicketEvent {
 	
 	private int event_id;
 	
-	private String nombre; ///Luego pondremos el resto atributos
+	private String nombre;
+	private String descLarga;
+	private String genero;
+	private String rangoPrecios;
+	private int precio;
+	//private String ciudad; vendra con recinto
 
 }

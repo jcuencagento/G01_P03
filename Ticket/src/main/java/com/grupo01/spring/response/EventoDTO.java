@@ -18,12 +18,22 @@ public class EventoDTO implements Serializable {
 
 	private int event_id;
 	private String nombre;
+	private String descLarga;
+	private String genero;
+	private String rangoPrecios;
+	//private String ciudad;
+	private int precio;
+	
 	
 	public static EventoDTO of(TicketEvent evento) {
 		log.info("--------ADAPTER EVENT CON EVENTO ------"+evento.getNombre());
 		EventoDTO e = new EventoDTO();
 		e.setEvent_id(evento.getEvent_id());
 		e.setNombre(evento.getNombre());
+		e.setDescLarga(evento.getDescLarga());
+		e.setGenero(evento.getGenero());
+		e.setRangoPrecios(evento.getRangoPrecios());
+		e.setPrecio(evento.getPrecio());
 		log.info("-------HE SALIDO DEL ADAPTER EVENTS-------");
 		return e;
 	}

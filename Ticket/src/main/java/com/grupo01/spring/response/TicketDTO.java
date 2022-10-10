@@ -20,21 +20,15 @@ public class TicketDTO implements Serializable {
 	
 	private int ticket_id;
 	private String user_mail;
+	private int precio_total;
 	private List<EventoDTO> events;
 	
 	public static TicketDTO of(Ticket ticket) {
-		log.info("------TICKET ADAPTER CON TICKET----");
 		log.info("------TICKET ADAPTER CON TICKET----"+ticket.getTicket_id());
-		//log.info("------TICKET ADAPTER CON EVENTOS----"+ticket.getEvents().get(0).getNombre());
 		TicketDTO t = new TicketDTO();
 		
 		t.setTicket_id(ticket.getTicket_id());
 		t.setUser_mail(ticket.getUserticket().getMail());
-		
-		if(ticket.getEvents().size()==0) {
-			t.setEvents(null);
-			return t;
-		}
 		
 		List<TicketEvent> aux = ticket.getEvents();
 		log.info("------GET EVENTS---HAY ESTE NUMERO DE EVENTOS EN EL TICKET->"+aux.size());
@@ -42,8 +36,16 @@ public class TicketDTO implements Serializable {
 		List<EventoDTO> aux2 = EventoDTO.of(aux);
 		log.info("------EVENTO DTO OF----"+aux2);
 		
-		t.setEvents(aux2);        ///ERRROR
+		t.setEvents(aux2);    
 		log.info("-------HE SALIDO DEL SET EVENTS-------");
+		
+		int precio_total=0;
+		for(EventoDTO e: aux2) {
+			precio_total += e.getPrecio();
+		}
+		
+		ticket.setPrecio_total(precio_total);
+		t.setPrecio_total(precio_total);
         return t;
     }
     
