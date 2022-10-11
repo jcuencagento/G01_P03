@@ -7,14 +7,16 @@ import com.grupo01.spring.utils.Randomizador;
 public class PaymentRequest {
 	//private int amount;
 
-	public static PaymentStatus getCodigo() {
-		int random = Randomizador.generarNumAleatorio(1, 1000);
+	public static PaymentStatus getCodigo(int def) {
+		//int random = Randomizador.generarNumAleatorio(1, 1000);
 		
-		if (random < 800)
+		if (def < 800)
 			return PaymentStatus.OK;
-		if (random < 900)
-			return PaymentStatus.ERROR;
+		if (def < 900)
+			return PaymentStatus.ERROR_TRANSACCION;
 		
 		return PaymentStatus.ERROR_SALDO;
 	}
+	
+	
 }
