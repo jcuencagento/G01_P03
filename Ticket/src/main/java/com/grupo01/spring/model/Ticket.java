@@ -13,7 +13,6 @@ import lombok.ToString;
 @ToString(exclude="events")
 @Data
 @Entity
-//@Table(name="ticket")
 public class Ticket {
 	
 	@Id
@@ -22,6 +21,8 @@ public class Ticket {
 	@ManyToOne
 	@JoinColumn(name="userticket_id")
 	private UserTicket userticket;
+	
+	private int precio_total;
 
 	@OneToMany(mappedBy="ticket")
 	private List<TicketEvent> events;

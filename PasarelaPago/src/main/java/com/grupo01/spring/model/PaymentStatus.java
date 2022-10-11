@@ -1,7 +1,9 @@
 package com.grupo01.spring.model;
 
 public enum PaymentStatus {
-	OK(200, "Pago aceptado!"), ERROR(400, "Error en la transaccion"), ERROR_SALDO(116, "Usted no tiene un euro");
+	OK(200, "Pago aceptado!"),
+	ERROR(400, "Error en la transaccion"),
+	ERROR_SALDO(116, "Usted no tiene un euro");
 
 	private int codigo;
 	private String descripcion;

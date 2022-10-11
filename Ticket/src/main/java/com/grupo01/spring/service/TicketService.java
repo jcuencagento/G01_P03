@@ -14,6 +14,8 @@ public interface TicketService {
 
 	public void addTicket(String mail, String pwd) throws Exception;
 
+	public String pay(int ticket_id);
+
 }
 
 
