@@ -1,2 +1,4 @@
 
 DatabaseUsers/src/main/resources/application.properties
+DatabaseUsers/src/main/resources/application.properties
+*.properties
