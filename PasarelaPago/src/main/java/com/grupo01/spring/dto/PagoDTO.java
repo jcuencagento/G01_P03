@@ -12,7 +12,6 @@ import lombok.AllArgsConstructor;
 public class PagoDTO implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
-	
 	private int ticket_id;
 	private String mail;
 	private int precio_total;
