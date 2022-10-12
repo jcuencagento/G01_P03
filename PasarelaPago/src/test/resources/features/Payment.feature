@@ -7,7 +7,7 @@ Background: User A tries to pay a ticket
 
 #  @Test_Success
   Scenario: User A tries to pay a ticket successfully
-   	#Given 3 tries to pay a ticket
+   #Given 3 tries to pay a ticket
     Then Payment from 3 is made successfully
     And Payment from 3 returns success message
 

@@ -1,27 +1,18 @@
 package com.grupo01.spring.cucumber.steps;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.when;
 
-import org.mockito.Mock;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.web.servlet.MockMvc;
 
 import com.grupo01.spring.controller.PasarelaPagoController;
 import com.grupo01.spring.cucumber.config.ApplicationConfig;
-import com.grupo01.spring.model.PaymentStatus;
 import com.grupo01.spring.request.PaymentRequest;
 
 import io.cucumber.spring.CucumberContextConfiguration;
 
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 
 import lombok.extern.slf4j.Slf4j;
