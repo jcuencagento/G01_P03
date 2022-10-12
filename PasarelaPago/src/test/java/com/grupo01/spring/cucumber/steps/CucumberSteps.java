@@ -42,13 +42,13 @@ public class CucumberSteps {
 
 	@Then("Payment from {int} is made successfully")
 	public void payment_is_made_successfully(int ticket_id) {
-		String result= controller.pago(ticket_id);
+		PagoDTO result= controller.pago(ticket_id, 0, null);
 		assertThat(result.contains("200"));
 		log.info("=============Codigo 200==============");
 	}
 	@Then("Payment from {int} returns success message")
 	public void payment_returns_success_message(int ticket_id) {
-		String result= controller.pago(ticket_id);
+		PagoDTO result= controller.pago(ticket_id, 0, null);
 		assertThat(result.contains("Pago aceptado!"));
 		log.info("mensaje: "+result);
 	}
@@ -69,14 +69,14 @@ public class CucumberSteps {
 	public void payment_is_not_made(int ticket_id) {
 
 		PasarelaPagoController pc= new PasarelaPagoController();
-		String result= pc.pago(ticket_id);
+		PagoDTO result= pc.pago(ticket_id, 0, null);
 		assertThat(result.contains("400.001"));
 		log.info("=============Codigo 400.001==============");
 	   
 	}
 	@Then("Payment made from {int} returns transaction error message")
 	public void payment_returns_transaction_error_message(int ticket_id) {
-		String result= controller.pago(ticket_id);
+		PagoDTO result = controller.pago(ticket_id, 0, null);
 		assertThat(result.contains("Error en la transaccion"));
 		log.info("mensaje error: "+result);
 	}	
@@ -95,7 +95,7 @@ public class CucumberSteps {
 	@Then("Payment made from {int} returns an error")
 	public void payment_returns_error_funds(int ticket_id) {
 
-		String result= controller.pago(ticket_id);
+		PagoDTO result= controller.pago(ticket_id, 0, null);
 		assertThat(result.contains("116.001"));
 		log.info("=============Codigo 116.001==============");
 	   
@@ -104,7 +104,7 @@ public class CucumberSteps {
 	
 	@Then("Payment made from {int} returns lack of funds error message")
 	public void payment_returns_lack_of_funds_error_message(int ticket_id) {
-		String result= controller.pago(ticket_id);
+		PagoDTO result= controller.pago(ticket_id, 0, null);
 		assertThat(result.contains("Usted no tiene un euro"));
 		log.info("mensaje fondos: "+result);
 	}

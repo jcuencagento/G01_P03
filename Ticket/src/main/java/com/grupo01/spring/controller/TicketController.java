@@ -2,7 +2,6 @@ package com.grupo01.spring.controller;
 
 import java.util.List;
 
-import javax.ws.rs.HeaderParam;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.grupo01.spring.controller.error.TicketNotFoundException;
 import com.grupo01.spring.model.Ticket;
+import com.grupo01.spring.response.PagoDTO;
 import com.grupo01.spring.response.TicketDTO;
 import com.grupo01.spring.service.TicketService;
 
@@ -97,7 +97,7 @@ public class TicketController {
 			  @ApiResponse(responseCode = "404", description = "Ticket no encontrado", content = @Content)
 			  })
 	@GetMapping("{ticket_id}/pay")
-	public String payTicket(@PathVariable int ticket_id) {
+	public PagoDTO payTicket(@PathVariable int ticket_id) {
 		log.info("------------ESTOY EN PAY A TICKET CONTROLLER------");
 		return ticketService.pay(ticket_id);
 	}

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.grupo01.spring.model.Ticket;
+import com.grupo01.spring.response.PagoDTO;
 public interface TicketService {
 	
 	public List<Ticket> listTicket();
@@ -14,7 +15,7 @@ public interface TicketService {
 
 	public void addTicket(String mail, String pwd) throws Exception;
 
-	public String pay(int ticket_id);
+	public PagoDTO pay(int ticket_id);
 
 	public String getToken(int ticket_id);
 
