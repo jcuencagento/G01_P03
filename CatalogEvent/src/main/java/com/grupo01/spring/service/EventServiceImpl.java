@@ -7,12 +7,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import javax.transaction.Transactional;
 
 import com.grupo01.spring.model.Evento;
 import com.grupo01.spring.repository.EventRepo;
 
-@Transactional
+@org.springframework.transaction.annotation.Transactional
 @Service
 public class EventServiceImpl implements EventService{
 	
@@ -61,6 +60,12 @@ public class EventServiceImpl implements EventService{
 		log.info("------Evento por genero EventServiceImpl------");
 		return eventRepo.findByGenero(genero);
 	}
+	
+	@Override
+	public List<Evento> eventoByCiudad(String ciudad) {
+		log.info("------Evento por ciudad EventServiceImpl------");
+		return eventRepo.findByCiudad(ciudad);
+	}
 
 
 	@Override
@@ -70,6 +75,8 @@ public class EventServiceImpl implements EventService{
 		eventRepo.deleteBy(actual.getEvent_id());
 		return eventRepo.save(editado);
 	}
+
+
 
 
 }

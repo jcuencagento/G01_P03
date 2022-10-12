@@ -10,11 +10,13 @@ public interface TicketService {
 	
 	public Optional<Ticket> findByTicketId(int id);
 	
-	public void addEvent(int ticket_id, int event_id, int cant);
+	public void addEvent(int ticket_id, int event_id);
 
 	public void addTicket(String mail, String pwd) throws Exception;
 
 	public String pay(int ticket_id);
+
+	public String getToken(int ticket_id);
 
 }
 

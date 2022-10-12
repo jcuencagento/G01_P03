@@ -27,11 +27,10 @@ public class Test09_SaveDeleteMongo {
 		Evento eOK = new Evento(150, "ConciertoMJ", "Desc", "Ext", "Genero", "Cosas", "etc", "etc", "etc", null);
 		assertThat(repo.save(eOK).getNombre()).isEqualTo(eOK.getNombre());
 		
-		//Luego probamos delete, tambien para no ensuciar la BBDD con las pruebas
-		
 		repo.deleteBy(e.getEvent_id());
 		repo.deleteBy(eOK.getEvent_id());
 		
 	}
 
 }
+

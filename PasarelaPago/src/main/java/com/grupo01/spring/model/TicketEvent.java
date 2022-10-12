@@ -10,14 +10,12 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 
 @Data
 @Entity
 @Table(name="ticketevent")
-@Schema(name="TicketEvent", description = "Clase TicketEvent. Esta clase es de tipo @Entity")
 public class TicketEvent {
 	
 	@Id
@@ -35,5 +33,5 @@ public class TicketEvent {
 	private String genero;
 	private String rangoPrecios;
 	private int precio;
-
+	//private String ciudad; vendra con recinto
 }

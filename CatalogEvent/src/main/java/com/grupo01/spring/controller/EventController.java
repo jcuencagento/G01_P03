@@ -6,7 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,12 +49,11 @@ public class EventController {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = Evento.class)) }),
 			@ApiResponse(responseCode = "400", description = "No válido", content = @Content),
 			@ApiResponse(responseCode = "404", description = "Not Found", content = @Content) })
-	@ExceptionHandler(ListaVaciaException.class)
 	@GetMapping("")
 	public List<EventoDTO> eventoListado() {
 		log.info("----Listado en EventController----");
 		final List<Evento> all = service.eventoListado();
-		if (all == null) throw new ListaVaciaException();
+		if (all.isEmpty()) throw new ListaVaciaException();
 		return EventoDTO.of(all);
 	}
 	
@@ -117,7 +115,7 @@ public class EventController {
 	public List<EventoDTO> eventoByNombre(@PathVariable String nombre) {
 		log.info("----Evento por nombre en EventController----");
 		List<Evento> events = service.eventoByNombre(nombre);
-		if (events == null) throw new ListaVaciaException();
+		if (events.isEmpty()) throw new ListaVaciaException();
 		return EventoDTO.of(events);
 	}
 	
@@ -132,7 +130,21 @@ public class EventController {
 	public List<EventoDTO> eventoByGenero(@PathVariable String genero) {
 		log.info("----Evento por genero en EventController----");
 		List<Evento> events = service.eventoByGenero(genero);
-		if (events == null) throw new ListaVaciaException();
+		if (events.isEmpty()) throw new ListaVaciaException();
+		return EventoDTO.of(events);
+	}
+	
+	@Operation(summary = "Buscar evento por ciudad", description = "Dada una ciudad, devuelve un listado de objetos Event", tags= {"evento"})
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Evento/s localizado/s", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Evento.class)) }),
+			@ApiResponse(responseCode = "400", description = "No válido", content = @Content),
+			@ApiResponse(responseCode = "404", description = "Evento no encontrado", content = @Content) })
+	@GetMapping("/ciudad/{ciudad}")
+	public List<EventoDTO> eventoByCiudad(@PathVariable String ciudad) {
+		log.info("----Evento por ciudad en EventController----");
+		List<Evento> events = service.eventoByCiudad(ciudad);
+		if (events.isEmpty()) throw new ListaVaciaException();
 		return EventoDTO.of(events);
 	}
 	

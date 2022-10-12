@@ -9,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.ToString;
 
@@ -17,7 +16,6 @@ import lombok.ToString;
 @Data
 @Entity
 @Table(name="userticket")
-@Schema(name="UserTicket", description = "Clase UserTicket. Esta clase es de tipo @Entity")
 public class UserTicket {
 
 	@Id
@@ -31,6 +29,5 @@ public class UserTicket {
 	
 	@OneToMany(mappedBy="userticket")
 	private List<Ticket> ticket;
-	
-	
+
 }
