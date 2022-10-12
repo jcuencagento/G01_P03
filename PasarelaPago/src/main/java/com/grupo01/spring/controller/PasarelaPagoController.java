@@ -15,4 +15,11 @@ public class PasarelaPagoController {
 	public String pago(@PathVariable int ticket_id) {
 		return "Pago del Ticket: " + ticket_id + " Ha resultado en: " + PaymentRequest.getCodigo(Randomizador.generarNumAleatorio(1, 1000)).toString();
 	}
+	
+	/*@GetMapping("{ticket_id}")
+    public String pago(@PathVariable int ticket_id, @RequestParam int precio_total, @RequestParam String user_mail){
+        return "Pago del Ticket: " + ticket_id + ".\nPrecio: "+ precio_total +
+                "$\nUsuario: " + user_mail +
+                "\nHa resultado en: " + PaymentRequest.getCodigo().toString();
+    }*/
 }

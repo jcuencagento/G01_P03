@@ -8,9 +8,11 @@ public class PaymentRequest {
 	//private int amount;
 
 	public static PaymentStatus getCodigo(int random) {
+
 		
-		if (random < 800)
+		if (def < 800)
 			return PaymentStatus.OK;
+
 		if (random < 900)
 			return PaymentStatus.ERROR_BANK;
 		if (random < 910)
@@ -31,7 +33,9 @@ public class PaymentRequest {
 			return PaymentStatus.ERROR_COUNTRYNOTSUPPORTED;
 		if (random < 990)
 			return PaymentStatus.ERROR_EXPIREDCARD;
-		
+
 		return PaymentStatus.ERROR_ACCOUNTBLOCKED;
 	}
+	
+	
 }
