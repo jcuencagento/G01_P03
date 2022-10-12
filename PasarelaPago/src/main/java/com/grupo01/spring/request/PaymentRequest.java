@@ -10,9 +10,8 @@ public class PaymentRequest {
 	public static PaymentStatus getCodigo(int random) {
 
 		
-		if (def < 800)
+		if (random < 800)
 			return PaymentStatus.OK;
-
 		if (random < 900)
 			return PaymentStatus.ERROR_BANK;
 		if (random < 910)
@@ -36,6 +35,4 @@ public class PaymentRequest {
 
 		return PaymentStatus.ERROR_ACCOUNTBLOCKED;
 	}
-	
-	
 }

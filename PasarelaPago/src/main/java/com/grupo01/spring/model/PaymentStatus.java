@@ -18,6 +18,7 @@ public enum PaymentStatus {
 	ERROR_ACCOUNTBLOCKED("500.104", "Error: Account blocked.");
 
 
+
 	private String codigo;
 	private String descripcion;
 

@@ -2,7 +2,6 @@ package com.grupo01.spring.cucumber.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.test.context.ContextConfiguration;
 
 import com.grupo01.spring.controller.PasarelaPagoController;
 
