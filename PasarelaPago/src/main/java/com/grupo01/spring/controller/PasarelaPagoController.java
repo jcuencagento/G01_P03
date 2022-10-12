@@ -14,13 +14,14 @@ import com.grupo01.spring.utils.Randomizador;
 @RequestMapping("/pasarelapago")
 public class PasarelaPagoController {
 
+
 	
 	@PostMapping("{ticket_id}")
 	public PagoDTO pago(@PathVariable int ticket_id, @RequestParam int precio_total, @RequestParam String user_mail){
 		PagoDTO result = new PagoDTO(ticket_id, user_mail, precio_total, PaymentRequest.getCodigo(Randomizador.generarNumAleatorio(1, 1000)));
 		return result;
 
-	}
+
 	
 	
 }
