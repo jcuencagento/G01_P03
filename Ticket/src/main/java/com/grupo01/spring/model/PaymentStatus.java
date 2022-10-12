@@ -1,8 +1,8 @@
 package com.grupo01.spring.model;
 
 public enum PaymentStatus {
-	//200
 	OK("200", "Pago aceptado!"),
+
 	//400
 	ERROR_BANK("400.100", "Error: Bank code invalid."),
 	ERROR_ACCOUNTNUMBER("400.101", "Error: Invalid account number."),
@@ -32,3 +32,4 @@ public enum PaymentStatus {
 		return "Codigo: " + codigo + ". Descripcion: " + descripcion;
 	}
 }
+

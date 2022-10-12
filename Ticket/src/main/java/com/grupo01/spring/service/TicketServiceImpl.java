@@ -23,6 +23,7 @@ import com.grupo01.spring.repository.TicketEventRepo;
 import com.grupo01.spring.repository.UserTicketRepo;
 import com.grupo01.spring.repository.service.TicketRepo;
 import com.grupo01.spring.response.EventoDTO;
+import com.grupo01.spring.response.PagoDTO;
 import com.grupo01.spring.response.UserDTO;
 import com.grupo01.spring.utils.Randomizador;
 
@@ -107,9 +108,9 @@ public class TicketServiceImpl implements TicketService{
 	}
 
 	@Override
-	public String pay(int ticket_id) {
+	public PagoDTO pay(int ticket_id) {
 		final Ticket ticket = ticketRepo.findById(ticket_id).orElseThrow(TicketNotFoundException::new);
-		final String respuesta = pasarelaFeign.pago(ticket.getTicket_id(), ticket.getPrecio_total(), ticket.getUserticket().getMail());
+		final PagoDTO respuesta = pasarelaFeign.pago(ticket.getTicket_id(), ticket.getPrecio_total(), ticket.getUserticket().getMail());
 		return respuesta;
 	}
 
