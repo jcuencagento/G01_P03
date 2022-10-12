@@ -1,5 +1,7 @@
 package com.grupo01.spring.feignclients;
 
+import java.util.Optional;
+
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,7 +16,7 @@ public interface CatalogFeignClientUser {
 	
 	//QUE VENGA DEL LOGIN !!!!
     @PostMapping("user/login")
-    public UserDTO login (@RequestParam String mail, @RequestParam String pwd);
+    public Optional<UserDTO> login (@RequestParam String mail, @RequestParam String pwd);
     
     
 

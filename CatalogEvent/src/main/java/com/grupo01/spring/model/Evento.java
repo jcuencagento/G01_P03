@@ -3,7 +3,7 @@ package com.grupo01.spring.model;
 import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import javax.persistence.Id;
+
 import org.springframework.data.mongodb.core.mapping.Document;
 import io.swagger.v3.oas.annotations.media.Schema;
 
@@ -15,10 +15,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 public class Evento {
 
 	@Schema(name = "id", description = "Identificador único para el evento", example = "10", required = true)
-	@Id
 	private int event_id;
 
-	
 	private String nombre;
 	private String descCorta;
 	private String descLarga;

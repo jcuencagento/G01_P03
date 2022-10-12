@@ -18,7 +18,10 @@ public interface EventService {
 	public List<Evento> eventoByNombre(String nombre);
 
 	public List<Evento> eventoByGenero(String genero);
+	
+	public List<Evento> eventoByCiudad(String ciudad);
 
 	public Evento editEvento(Evento e, Evento evento);
+
 
 }

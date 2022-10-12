@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.grupo01.spring.controller.TicketController;
+import com.grupo01.spring.controller.error.TicketNotFoundException;
+import com.grupo01.spring.controller.error.UserNotFoundException;
 import com.grupo01.spring.feignclients.CatalogFeignClientEvent;
 import com.grupo01.spring.feignclients.CatalogFeignClientUser;
 import com.grupo01.spring.feignclients.FeignClientPasarela;
@@ -61,61 +63,60 @@ public class TicketServiceImpl implements TicketService{
 	}
 
 	@Override
-	public void addEvent(int ticket_id, int event_id, int cant) {
+	public void addEvent(int ticket_id, int event_id) {
 		final EventoDTO evento = eventFeign.getEvent(event_id); 
 		String rangoPrecios = evento.getRangoPrecios();
 		String[] rangos = rangoPrecios.split(",");
 		int precio = Randomizador.generarNumAleatorio(Integer.parseInt(rangos[0]), Integer.parseInt(rangos[1]));
-		this.addEvent(ticket_id, event_id, evento.getNombre(),
-				evento.getDescLarga(), evento.getGenero(), rangoPrecios, precio, cant);
+		this.addEvent(ticket_id, event_id, evento.getNombre(),evento.getDescLarga(), evento.getGenero(), rangoPrecios, precio);
 	}
 	
-	public void addEvent(int ticket_id, int event_id, String nombre, String descLarga, String genero, String rangoPrecios, int precio, int cant) {
-		final Ticket ticket = ticketRepo.findById(ticket_id).orElseThrow();
+	public void addEvent(int ticket_id, int event_id, String nombre, String descLarga, String genero, String rangoPrecios, int precio) {
+		final Ticket ticket = ticketRepo.findById(ticket_id).orElseThrow(TicketNotFoundException::new);
 		ticket.setPrecio_total(precio);
-		
-		for(int i=0; i<cant; i++) {
-			TicketEvent te = new TicketEvent();
-			te.setTicket(ticket);
-			te.setEvent_id(event_id);
-			te.setNombre(nombre);
-			te.setDescLarga(descLarga);
-			te.setGenero(genero);
-			te.setRangoPrecios(rangoPrecios);
-			te.setPrecio(precio);
-			ticketeventRepo.save(te);
-		}
+		TicketEvent te = new TicketEvent();
+		te.setTicket(ticket);
+		te.setEvent_id(event_id);
+		te.setNombre(nombre);
+		te.setDescLarga(descLarga);
+		te.setGenero(genero);
+		te.setRangoPrecios(rangoPrecios);
+		te.setPrecio(precio);
+		ticketeventRepo.save(te);
+
 	}
 
 	@Override
 	public void addTicket(String mail, String pwd) throws Exception {
-		final UserDTO user = userFeign.login(mail,pwd);					//Si es login incorrecto se quedaria aqui con 403
-		
+		final UserDTO user = userFeign.login(mail,pwd).orElseThrow(UserNotFoundException::new);					//Si es login incorrecto se quedaria aqui con 403
 		log.info("------------ADDTICKET SERVICE HE LOGEADO A="+user);
 		
 		UserTicket userticket = new UserTicket();
-		
 		userticket.setUser_id(user.getUser_id());
 		userticket.setMail(mail);
 		userticket.setToken(user.getToken());
 		userticket = userticketRepo.save(userticket);
 		System.out.println(userticket);
-		
 		log.info("------------ADDTICKET SERVICE CON USERTICKET="+userticket.getUserticket_id());
 		
 		Ticket ticket = new Ticket();
 		ticket.setUserticket(userticket);
 		ticket.setEvents(null);
-		
 		ticketRepo.save(ticket);
-		
 		log.info("------------ADDTICKET SERVICE CON TICKET CON USERTICKET ID="+ticket.getTicket_id());
 	}
 
 	@Override
 	public String pay(int ticket_id) {
-		final String respuesta = pasarelaFeign.pago(ticket_id);
+		final Ticket ticket = ticketRepo.findById(ticket_id).orElseThrow(TicketNotFoundException::new);
+		final String respuesta = pasarelaFeign.pago(ticket.getTicket_id(), ticket.getPrecio_total(), ticket.getUserticket().getMail());
 		return respuesta;
+	}
+
+	@Override
+	public String getToken(int ticket_id) {
+		final Ticket ticket = ticketRepo.findById(ticket_id).orElseThrow(TicketNotFoundException::new);
+		return ticket.getUserticket().getToken();
 	}
 
 }

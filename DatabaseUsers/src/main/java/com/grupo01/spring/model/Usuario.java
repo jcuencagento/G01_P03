@@ -29,7 +29,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 public class Usuario {
 
 	 @NotBlank@NotEmpty
-	 @Schema(name= "id", 
+	 @Schema(name= "user_id", 
 	    		description = "Identificador único para el usuario", 
 	            example = "38", 
 	            required = true)
