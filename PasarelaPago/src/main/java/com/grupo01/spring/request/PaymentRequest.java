@@ -8,6 +8,7 @@ public class PaymentRequest {
 	//private int amount;
 
 	public static PaymentStatus getCodigo(int random) {
+
 		
 		if (random < 800)
 			return PaymentStatus.OK;
@@ -31,7 +32,7 @@ public class PaymentRequest {
 			return PaymentStatus.ERROR_COUNTRYNOTSUPPORTED;
 		if (random < 990)
 			return PaymentStatus.ERROR_EXPIREDCARD;
-		
+
 		return PaymentStatus.ERROR_ACCOUNTBLOCKED;
 	}
 }
