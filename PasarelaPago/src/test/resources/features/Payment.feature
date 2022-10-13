@@ -45,7 +45,7 @@ Scenario Outline: User tries to pay a ticket
     Examples: 
       | ticket_id   | random 	| status 					       |description                 |
       |  3				  |  799   	| OK			 				       | Pago aceptado              |
-      |	 4				  |	 803	  | ERROR_BANK    	       | Bank code invalid          |
+      |	 4				  |	 899	  | ERROR_BANK    	       | Bank code invalid          |
       |	 5			    |	 959	  | ERROR_DECLINED         | Card declined              |
       |  6          |  929    | ERROR_CARDSECURITYCODE | Invalid card security code |
       |	 7			    |	 991	  | ERROR_ACCOUNTBLOCKED   | Account blocked            |

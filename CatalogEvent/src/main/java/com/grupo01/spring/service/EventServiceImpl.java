@@ -51,20 +51,20 @@ public class EventServiceImpl implements EventService{
 	@Override
 	public List<Evento> eventoByNombre(String nombre) {
 		log.info("------Evento por nombre EventServiceImpl------");
-		return eventRepo.findByNombre(nombre);
+		return eventRepo.findByNombre(nombre.toLowerCase());
 	}
 
 
 	@Override
 	public List<Evento> eventoByGenero(String genero) {
 		log.info("------Evento por genero EventServiceImpl------");
-		return eventRepo.findByGenero(genero);
+		return eventRepo.findByGenero(genero.toLowerCase());
 	}
 	
 	@Override
 	public List<Evento> eventoByCiudad(String ciudad) {
 		log.info("------Evento por ciudad EventServiceImpl------");
-		return eventRepo.findByCiudad(ciudad);
+		return eventRepo.findByCiudad(ciudad.toLowerCase());
 	}
 
 
