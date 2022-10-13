@@ -21,7 +21,6 @@ public class CucumberSteps {
 	@Autowired
 	private PasarelaPagoController controller;
 	PaymentRequest request;
-	PaymentStatus status;
 	/*
 	 * @Given("{int} tries to pay a ticket") public void makePayment(int ticket_id)
 	 * {
@@ -33,7 +32,7 @@ public class CucumberSteps {
 	@Then("Payment from {int} is made successfully")
 	public void payment_is_made_successfully(int ticket_id) {
 		PaymentStatus result = request.getCodigo(799);
-		assertEquals(status.OK, result);
+		assertEquals(PaymentStatus.OK, result);
 		log.info("=============Codigo 200==============");
 	}
 
@@ -57,7 +56,7 @@ public class CucumberSteps {
 		// PasarelaPagoController pc = new PasarelaPagoController();
 		/// PagoDTO result = pc.pago(ticket_id, 0, null);
 		PaymentStatus result = request.getCodigo(899);
-		assertEquals(status.ERROR_BANK, result);
+		assertEquals(PaymentStatus.ERROR_BANK, result);
 		log.info("=============Codigo 400.100==============");
 
 	}
@@ -81,7 +80,7 @@ public class CucumberSteps {
 	@Then("Payment made from {int} returns an error card declined")
 	public void payment_returns_error_funds(int ticket_id) {
 		PaymentStatus result = request.getCodigo(959);
-		assertEquals(status.ERROR_DECLINED, result);
+		assertEquals(PaymentStatus.ERROR_DECLINED, result);
 		log.info("=============Codigo 500.100==============");
 
 	}
@@ -97,7 +96,7 @@ public class CucumberSteps {
 	@Then("Payment made from {int} returns invalid card security code error")
 	public void invalid_card_security_code_error(int ticket_id) {
 		PaymentStatus result = request.getCodigo(929);
-		assertEquals(status.ERROR_CARDSECURITYCODE, result);
+		assertEquals(PaymentStatus.ERROR_CARDSECURITYCODE, result);
 		log.info("=============Codigo 400.103==============");
 
 	}
@@ -113,7 +112,7 @@ public class CucumberSteps {
 	@Then("Payment made from {int} returns account blocked error")
 	public void account_blocked_error(int ticket_id) {
 		PaymentStatus result = request.getCodigo(991);
-		assertEquals(status.ERROR_ACCOUNTBLOCKED, result);
+		assertEquals(PaymentStatus.ERROR_ACCOUNTBLOCKED, result);
 		log.info("=============Codigo 500.104==============");
 
 	}
