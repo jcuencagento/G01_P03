@@ -2,9 +2,7 @@ package com.grupo01.spring.cucumber.steps;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import com.grupo01.spring.controller.PasarelaPagoController;
 import com.grupo01.spring.cucumber.config.ApplicationConfig;
 import com.grupo01.spring.model.PaymentStatus;
 import com.grupo01.spring.request.PaymentRequest;
@@ -18,10 +16,6 @@ import lombok.extern.slf4j.Slf4j;
 @ContextConfiguration(classes = ApplicationConfig.class)
 public class CucumberSteps {
 
-	@Autowired
-	private PasarelaPagoController controller;
-	PaymentRequest request;
-	PaymentStatus status;
 	/*
 	 * @Given("{int} tries to pay a ticket") public void makePayment(int ticket_id)
 	 * {
@@ -34,7 +28,7 @@ public class CucumberSteps {
 	public void payment_is_made_successfully(int ticket_id) {
 		//PaymentStatus result = request.getCodigo(799);
 		PaymentStatus result =PaymentRequest.getCodigo(799);
-		assertEquals(status.OK, result);
+		assertEquals(PaymentStatus.OK, result);
 		log.info("=============Codigo 200==============");
 	}
 
@@ -58,8 +52,8 @@ public class CucumberSteps {
 	public void payment_is_not_made(int ticket_id) {
 		// PasarelaPagoController pc = new PasarelaPagoController();
 		/// PagoDTO result = pc.pago(ticket_id, 0, null);
-		PaymentStatus result = request.getCodigo(899);
-		assertEquals(status.ERROR_BANK, result);
+		PaymentStatus result =PaymentRequest.getCodigo(899);
+		assertEquals(PaymentStatus.ERROR_BANK, result);
 		log.info("=============Codigo 400.100==============");
 
 	}
@@ -67,7 +61,7 @@ public class CucumberSteps {
 	@Then("Payment made from {int} returns transaction error message bank code invalid")
 	public void payment_returns_transaction_error_message(int ticket_id) {
 		// PagoDTO result = controller.pago(ticket_id, 0, null);
-		PaymentStatus result = request.getCodigo(899);
+		PaymentStatus result =PaymentRequest.getCodigo(899);
 		assertThat(result.getDescripcion().contains("Bank code invalid"));
 		log.info("mensaje error: " + result);
 	}
@@ -82,15 +76,15 @@ public class CucumberSteps {
 
 	@Then("Payment made from {int} returns an error card declined")
 	public void payment_returns_error_funds(int ticket_id) {
-		PaymentStatus result = request.getCodigo(959);
-		assertEquals(status.ERROR_DECLINED, result);
+		PaymentStatus result =PaymentRequest.getCodigo(959);
+		assertEquals(PaymentStatus.ERROR_DECLINED, result);
 		log.info("=============Codigo 500.100==============");
 
 	}
 
 	@Then("Payment made from {int} returns lack of funds error message")
 	public void payment_returns_lack_of_funds_error_message(int ticket_id) {
-		PaymentStatus result = request.getCodigo(959);
+		PaymentStatus result =PaymentRequest.getCodigo(959);
 		assertThat(result.getDescripcion().contains("Card declined"));
 		log.info("mensaje error: " + result);
 	}
@@ -98,15 +92,15 @@ public class CucumberSteps {
 	// SCENARIO 4
 	@Then("Payment made from {int} returns invalid card security code error")
 	public void invalid_card_security_code_error(int ticket_id) {
-		PaymentStatus result = request.getCodigo(929);
-		assertEquals(status.ERROR_CARDSECURITYCODE, result);
+		PaymentStatus result =PaymentRequest.getCodigo(929);
+		assertEquals(PaymentStatus.ERROR_CARDSECURITYCODE, result);
 		log.info("=============Codigo 400.103==============");
 
 	}
 
 	@Then("Payment made from {int} returns invalid card security code error message")
 	public void invalid_card_security_code_error_message(int ticket_id) {
-		PaymentStatus result = request.getCodigo(929);
+		PaymentStatus result =PaymentRequest.getCodigo(929);
 		assertThat(result.getDescripcion().contains("Invalid card security code"));
 		log.info("mensaje error: " + result);
 	}
@@ -114,15 +108,15 @@ public class CucumberSteps {
 	// SCENARIO 5
 	@Then("Payment made from {int} returns account blocked error")
 	public void account_blocked_error(int ticket_id) {
-		PaymentStatus result = request.getCodigo(991);
-		assertEquals(status.ERROR_ACCOUNTBLOCKED, result);
+		PaymentStatus result =PaymentRequest.getCodigo(991);
+		assertEquals(PaymentStatus.ERROR_ACCOUNTBLOCKED, result);
 		log.info("=============Codigo 500.104==============");
 
 	}
 
 	@Then("Payment made from {int} returns account blocked error message")
 	public void account_blocked_error_message(int ticket_id) {
-		PaymentStatus result = request.getCodigo(929);
+		PaymentStatus result =PaymentRequest.getCodigo(929);
 		assertThat(result.getDescripcion().contains("Account blocked"));
 		log.info("mensaje error: " + result);
 	}
