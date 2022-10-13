@@ -1,8 +1,6 @@
 package com.grupo01.spring.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -24,7 +22,7 @@ public class TicketEvent {
 	private int ticketevent_id;
 	
 	@JsonIgnoreProperties("events")
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="ticket_id")
 	private Ticket ticket;
 	

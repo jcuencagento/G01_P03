@@ -14,6 +14,7 @@ import com.grupo01.spring.repository.UsuarioRepository;
 //////////////// Test NOT OK ///////////////
 @DataJpaTest
 public class Test06_SaveDeleteJpa {
+	
     @Autowired
     private UsuarioRepository repo;
 

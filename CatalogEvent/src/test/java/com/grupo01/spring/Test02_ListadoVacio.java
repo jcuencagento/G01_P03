@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -16,9 +17,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import com.grupo01.spring.controller.EventController;
 import com.grupo01.spring.controller.error.ListaVaciaException;
 import com.grupo01.spring.model.Evento;
-import com.grupo01.spring.repository.EventRepo;
 import com.grupo01.spring.service.EventService;
 
+/////// TEST OK //////////////
 @WebMvcTest(EventController.class)
 public class Test02_ListadoVacio {
 	
@@ -27,14 +28,12 @@ public class Test02_ListadoVacio {
 	
 	@MockBean
 	private EventService service;
-	
-	@MockBean
-	private EventRepo repo;
+
 	
 	@ExceptionHandler(ListaVaciaException.class)
 	@Test
 	void contextLoads() throws Exception {
-		List<Evento> listaVacia = null;
+		List<Evento> listaVacia = new ArrayList<Evento>();
 		
 		when(service.eventoListado()).thenReturn(listaVacia);
 		

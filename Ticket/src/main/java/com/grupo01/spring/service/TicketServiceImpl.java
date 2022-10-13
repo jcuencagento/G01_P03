@@ -74,7 +74,8 @@ public class TicketServiceImpl implements TicketService{
 	
 	public void addEvent(int ticket_id, int event_id, String nombre, String descLarga, String genero, String rangoPrecios, int precio) {
 		final Ticket ticket = ticketRepo.findById(ticket_id).orElseThrow(TicketNotFoundException::new);
-		ticket.setPrecio_total(precio);
+		int precio_total = ticket.getPrecio_total() + precio;
+		ticket.setPrecio_total(precio_total);
 		TicketEvent te = new TicketEvent();
 		te.setTicket(ticket);
 		te.setEvent_id(event_id);

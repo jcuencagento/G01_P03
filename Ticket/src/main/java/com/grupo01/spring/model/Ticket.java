@@ -2,9 +2,7 @@ package com.grupo01.spring.model;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -37,7 +35,7 @@ public class Ticket {
 	private int precio_total;
 
 	@JsonIgnoreProperties("ticket")
-	@OneToMany(mappedBy="ticket", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="ticket")
 	private List<TicketEvent> events;
 
 }

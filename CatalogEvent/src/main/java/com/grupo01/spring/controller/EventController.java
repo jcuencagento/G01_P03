@@ -82,8 +82,8 @@ public class EventController {
 		if(evento.getNombre()==null) throw new EventNullException();
 		int last_id = 0;
 		for(Evento e: eventRepo.findAll()) {
-			last_id = e.getEvent_id();
-			evento.setEvent_id(last_id);
+			if(e.getEvent_id()>last_id) last_id = e.getEvent_id();
+			evento.setEvent_id(e.getEvent_id());
 			if(e.equals(evento)) throw new EventFoundException();
 		}
 		last_id = last_id+1;

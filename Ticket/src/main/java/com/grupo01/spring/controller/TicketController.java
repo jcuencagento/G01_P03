@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.grupo01.spring.controller.error.ListaVaciaException;
 import com.grupo01.spring.controller.error.TicketNotFoundException;
 import com.grupo01.spring.model.Ticket;
 import com.grupo01.spring.response.PagoDTO;
@@ -47,7 +48,9 @@ public class TicketController {
 	@GetMapping("")
 	public List<TicketDTO> listTicket() {
 		log.info("------------ESTOY EN LIST TICKET CONTROLLER------");
-		return TicketDTO.of(ticketService.listTicket());
+		final List<Ticket> all = ticketService.listTicket();
+		if (all.isEmpty()) throw new ListaVaciaException();
+		return TicketDTO.of(all);
 	}
 	
 

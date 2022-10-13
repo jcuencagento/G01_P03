@@ -7,7 +7,7 @@ import com.grupo01.spring.model.PaymentStatus;
 @Service
 public class PaymentRequest {
 
-	public PaymentStatus getCodigo(int random) {
+	public static PaymentStatus getCodigo(int random) {
 		
 		if (random < 800)
 			return PaymentStatus.OK;
