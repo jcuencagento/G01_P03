@@ -3,7 +3,6 @@ package com.grupo01.spring.request;
 import com.grupo01.spring.model.PaymentStatus;
 
 public class PaymentRequest {
-	//private int amount;
 
 	public static PaymentStatus getCodigo(int random) {
 		
