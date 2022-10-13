@@ -50,8 +50,6 @@ public class CucumberSteps {
 
 	@Then("Payment made from {int} is not made")
 	public void payment_is_not_made(int ticket_id) {
-		// PasarelaPagoController pc = new PasarelaPagoController();
-		/// PagoDTO result = pc.pago(ticket_id, 0, null);
 		PaymentStatus result =PaymentRequest.getCodigo(899);
 		assertEquals(PaymentStatus.ERROR_BANK, result);
 		log.info("=============Codigo 400.100==============");
@@ -60,7 +58,6 @@ public class CucumberSteps {
 
 	@Then("Payment made from {int} returns transaction error message bank code invalid")
 	public void payment_returns_transaction_error_message(int ticket_id) {
-		// PagoDTO result = controller.pago(ticket_id, 0, null);
 		PaymentStatus result =PaymentRequest.getCodigo(899);
 		assertThat(result.getDescripcion().contains("Bank code invalid"));
 		log.info("mensaje error: " + result);
@@ -76,6 +73,7 @@ public class CucumberSteps {
 
 	@Then("Payment made from {int} returns an error card declined")
 	public void payment_returns_error_funds(int ticket_id) {
+
 		PaymentStatus result =PaymentRequest.getCodigo(959);
 		assertEquals(PaymentStatus.ERROR_DECLINED, result);
 		log.info("=============Codigo 500.100==============");

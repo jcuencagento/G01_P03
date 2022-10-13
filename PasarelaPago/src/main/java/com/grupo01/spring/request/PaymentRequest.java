@@ -1,10 +1,13 @@
 package com.grupo01.spring.request;
 
+import org.springframework.stereotype.Service;
+
 import com.grupo01.spring.model.PaymentStatus;
 
+@Service
 public class PaymentRequest {
 
-	public static PaymentStatus getCodigo(int random) {
+	public PaymentStatus getCodigo(int random) {
 		
 		if (random < 800)
 			return PaymentStatus.OK;
