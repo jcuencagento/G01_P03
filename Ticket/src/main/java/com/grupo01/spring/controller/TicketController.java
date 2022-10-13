@@ -88,7 +88,7 @@ public class TicketController {
 	@PostMapping("{ticket_id}/add")
 	public void addEvent(@PathVariable int ticket_id, @RequestParam int event_id) {
 		log.info("------------ESTOY EN ADD EVENT POR CANT A TICKET CONTROLLER------");
-		this.addEvent(ticket_id, event_id);
+		ticketService.addEvent(ticket_id, event_id);
 	}
 	
 	@Operation(summary = "Finalizar la compra del ticket en la pasarela", description = "Eliges el ticket", tags= {"Ticket"})

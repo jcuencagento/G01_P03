@@ -6,7 +6,6 @@ import com.grupo01.spring.model.PaymentStatus;
 
 @Service
 public class PaymentRequest {
-	//private int amount;
 
 	public PaymentStatus getCodigo(int random) {
 		

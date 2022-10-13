@@ -31,14 +31,16 @@ public class CucumberSteps {
 
 	@Then("Payment from {int} is made successfully")
 	public void payment_is_made_successfully(int ticket_id) {
-		PaymentStatus result = request.getCodigo(799);
-		assertEquals(PaymentStatus.OK, result);
+		//PaymentStatus result = request.getCodigo(799);
+		PaymentStatus result =PaymentRequest.getCodigo(799);
+		assertEquals(status.OK, result);
 		log.info("=============Codigo 200==============");
 	}
 
 	@Then("Payment from {int} returns success message")
 	public void payment_returns_success_message(int ticket_id) {
-		PaymentStatus result = request.getCodigo(799);
+		//PaymentStatus result = request.getCodigo(799);
+		PaymentStatus result =PaymentRequest.getCodigo(799);
 		assertThat(result.getDescripcion().contains("Pago aceptado!"));
 		log.info("mensaje: " + result);
 	}
